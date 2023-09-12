@@ -14,7 +14,6 @@ public class Encargado {
     // Métodos:
     public void mostrarInformacion() {
         System.out.println("Correo: " + correo);
-        System.out.println("Nombre Completo: " + apellidos + " " + nombres);
-        System.out.println("");
+        System.out.println("Nombre Completo: " + apellidos + " " + nombres + "\n");
     }
 }

@@ -19,9 +19,8 @@ public class Producto {
         System.out.println("Precio: " + precio);
         System.out.println("Categoria: " + categoria);
         if(cantidad > 0)
-            System.out.println("Disponible");
+            System.out.println("Disponible\n");
         else
-            System.out.println("No disponible");
-        System.out.println("");
+            System.out.println("No disponible\n");
     }
 }
