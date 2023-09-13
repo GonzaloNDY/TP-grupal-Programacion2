@@ -1,11 +1,11 @@
 # Generado con chatgpt:
 
 # Ignora archivos y directorios generados por NetBeans
-/TP-grupal/nbproject/private/
-/TP-grupal/nbbuild/
-/TP-grupal/dist/
-/TP-grupal/build/
-/TP-grupal/nb-configuration.xml
+/nbproject/private/
+/nbbuild/
+/dist/
+/build/
+/nb-configuration.xml
 
 # Ignora archivos específicos de NetBeans
 *.log
