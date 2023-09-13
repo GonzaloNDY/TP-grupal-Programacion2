@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package unPaquete;
 
 public class Cliente {
@@ -13,7 +10,7 @@ public class Cliente {
     
     // Métodos:
     public void mostrarInformacion() {
-        System.out.println("Correo: " + correo);
-        System.out.println("Nombre Completo: " + apellidos + " " + nombres + "\n");
+        System.out.println("Nombre Completo: " + apellidos + " " + nombres);
+        System.out.println("Correo: " + correo + "\n");
     }
 }
