@@ -17,5 +17,5 @@ Este proyecto es una colaboración entre:
 
 - Gonzalo N. Diaz Y.    Gmail: gonzalio100@gmail.com     Github: https://github.com/GonzaloNDY
 
-- Nicolas Colman        Gmail: contacto@gmail.com        Github: https://github.com/ColmanNicolas
+- Mario Nicolas Colman        Gmail: colman.nicolas.17@gmail.com        Github: https://github.com/ColmanNicolas
 
