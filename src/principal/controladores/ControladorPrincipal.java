@@ -1,5 +1,5 @@
 
-package unPaquete;
+package principal.controladores;
 
 import java.util.ArrayList;
 
@@ -21,8 +21,8 @@ public class ControladorPrincipal {
         Cliente cliente3 = new Cliente();
         cliente3.correo = "zxcvb@gmail.com";
         cliente3.contraseña = "bvcxz";
-        cliente3.apellidos = "Sonia";
-        cliente3.nombres = "Rayo";
+        cliente3.apellidos = "Nicolas";
+        cliente3.nombres = "Colman";
 
         // Empleados:
         Empleado empleado1 = new Empleado();
