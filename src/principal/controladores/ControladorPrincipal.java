@@ -2,82 +2,35 @@
 package principal.controladores;
 
 import java.util.ArrayList;
+import productos.modelos.Producto;
+import usuarios.modelos.Cliente;
+import usuarios.modelos.Empleado;
+import usuarios.modelos.Encargado;
 
 public class ControladorPrincipal {
         
     public static void main(String[] args) {
 
         // Clientes:
-        Cliente cliente1 = new Cliente();
-        cliente1.correo = "qwerty@gmail.com";
-        cliente1.contraseña = "ytrewq";
-        cliente1.apellidos = "Diaz";
-        cliente1.nombres = "Gonzalo";
-        Cliente cliente2 = new Cliente();
-        cliente2.correo = "asdfg@gmail.com";
-        cliente2.contraseña = "gfdsa";
-        cliente2.apellidos = "Yarahuaman";
-        cliente2.nombres = "Neptali";
-        Cliente cliente3 = new Cliente();
-        cliente3.correo = "zxcvb@gmail.com";
-        cliente3.contraseña = "bvcxz";
-        cliente3.apellidos = "Nicolas";
-        cliente3.nombres = "Colman";
+        Cliente cliente1 = new Cliente("Diaz", "Gonzalo", "qwerty@gmail.com", "ytrewq");
+        Cliente cliente2 = new Cliente("Neptali", "Yarahuaman", "asdfg@gmail.com", "gfdsa");
+        Cliente cliente3 = new Cliente("Colman", "Nicolas", "zxcvb@gmail.com", "bvcxz");
 
         // Empleados:
-        Empleado empleado1 = new Empleado();
-        empleado1.correo = "qwerty@gmail.com";
-        empleado1.contraseña = "ytrewq";
-        empleado1.apellidos = "Mario";
-        empleado1.nombres = "Puma";
-        Empleado empleado2 = new Empleado();
-        empleado2.correo = "asdfg@gmail.com";
-        empleado2.contraseña = "gfdsa";
-        empleado2.apellidos = "Diego";
-        empleado2.nombres = "Wilfredo";
-        Empleado empleado3 = new Empleado();
-        empleado3.correo = "zxcvb@gmail.com";
-        empleado3.contraseña = "bvcxz";
-        empleado3.apellidos = "Angel";
-        empleado3.nombres = "Eduardo";
+        Empleado empleado1 = new Empleado("Mario", "Diaz", "qwerty@gmail.com", "ytrewq");
+        Empleado empleado2 = new Empleado("Diego", "Wilfredo", "asdfg@gmail.com", "gfdsa");
+        Empleado empleado3 = new Empleado("Eduardo", "Diaz", "zxcvb@gmail.com", "bvcxz");
 
         // Encargados:
-        Encargado encargado1 = new Encargado();
-        encargado1.correo = "qwerty@gmail.com";
-        encargado1.contraseña = "ytrewq";
-        encargado1.apellidos = "Juan";
-        encargado1.nombres = "Sanchez";
-        Encargado encargado2 = new Encargado();
-        encargado2.correo = "asdfg@gmail.com";
-        encargado2.contraseña = "gfdsa";
-        encargado2.apellidos = "Carlos";
-        encargado2.nombres = "Perez";
-        Encargado encargado3 = new Encargado();
-        encargado3.correo = "zxcvb@gmail.com";
-        encargado3.contraseña = "bvcxz";
-        encargado3.apellidos = "Gabriel";
-        encargado3.nombres = "Diaz";
+        Encargado encargado1 = new Encargado("Juan", "Sanchez", "qwerty@gmail.com", "ytrewq");
+        Encargado encargado2 = new Encargado("Carlos", "Perez", "asdfg@gmail.com", "gfdsa");
+        Encargado encargado3 = new Encargado("Gabriel", "Diaz", "zxcvb@gmail.com", "bvcxz");
 
         // Productos:
-        Producto producto1 = new Producto();
-        producto1.nombre = "Café";
-        producto1.descripcion = "Taza de café";
-        producto1.precio = 500.00f;
-        producto1.categoria = "Entrada";
-        producto1.cantidad = 15;
-        Producto producto2 = new Producto();
-        producto2.nombre = "Milanesa";
-        producto2.descripcion = "Milanesa con papas";
-        producto2.precio = 1500.00f;
-        producto2.categoria = "Plato principal";
-        producto2.cantidad = 10;
-        Producto producto3 = new Producto();
-        producto3.nombre = "Flan";
-        producto3.descripcion = "Flan de leche";
-        producto3.precio = 300.00f;
-        producto3.categoria = "Postre";
-        producto3.cantidad = 0;
-        
+        Producto producto1 = new Producto("Café", "Taza de café", 500.00f, "Entrada", 15);
+        Producto producto2 = new Producto("Milanesa", "Milanesa con papas", 1500.00f, "Plato principal", 10);
+        Producto producto3 = new Producto("Flan", "Flan de leche", 300.00f, "Postre", 0);
+
         ArrayList<Cliente> listaDeClientes = new ArrayList<>();
         listaDeClientes.add(cliente1);
         listaDeClientes.add(cliente2);
@@ -117,5 +70,8 @@ public class ControladorPrincipal {
         for (Producto unProducto : listaDeProductos) {
             unProducto.mostrarInformacion();
         }
+        
+        // empleado1.asignarApellidos("Ramirez");
+        // System.out.println(empleado1.verApellidos());
     }
 }

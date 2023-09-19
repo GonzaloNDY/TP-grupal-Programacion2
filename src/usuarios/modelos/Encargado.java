@@ -10,11 +10,11 @@ public class Encargado {
     private String contraseña;
 
     // Constructor: 
-    public Encargado (String apellido, String nombre, String email, String clave){
-        apellidos = apellido;
-        nombres = nombre;
-        correo = email;
-        contraseña = clave;
+    public Encargado (String apellidos, String nombres, String correo, String contraseña){
+        this.apellidos = apellidos;
+        this.nombres = nombres;
+        this.correo = correo;
+        this.contraseña = contraseña;
     }
 
     // Métodos:

@@ -11,12 +11,13 @@ public class Producto {
     private int cantidad;
 
     // Constructor:
-    public Producto (String nombreProd, String descripcionProd, float precioProd, String categoriaProd, int cantidadProd){
-        nombre = nombreProd;
-        descripcion = descripcionProd;
-        precio = precioProd;
-        categoria = categoriaProd;
-        cantidad = cantidadProd;
+    public Producto (String nombre, String descripcion, float precio, String categoria, int cantidad){
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        
+        this.categoria = categoria;
+        this.cantidad = cantidad;
     }
     
     // Métodos:
