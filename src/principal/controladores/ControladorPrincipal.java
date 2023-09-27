@@ -27,9 +27,9 @@ public class ControladorPrincipal {
         Encargado encargado3 = new Encargado("Gabriel", "Diaz", "zxcvb@gmail.com", "bvcxz");
 
         // Productos:
-        Producto producto1 = new Producto("Café", "Taza de café", 500.00f, "Entrada", 15);
-        Producto producto2 = new Producto("Milanesa", "Milanesa con papas", 1500.00f, "Plato principal", 10);
-        Producto producto3 = new Producto("Flan", "Flan de leche", 300.00f, "Postre", 0);
+        Producto producto1 = new Producto(1234, "Taza de café", 500.00f, "Entrada", "Disponible");
+        Producto producto2 = new Producto(5678, "Milanesa con papas", 1500.00f, "Plato principal", "Disponible");
+        Producto producto3 = new Producto(9012, "Flan de leche", 300.00f, "Postre", "Disponible");
 
         ArrayList<Cliente> listaDeClientes = new ArrayList<>();
         listaDeClientes.add(cliente1);
@@ -70,8 +70,5 @@ public class ControladorPrincipal {
         for (Producto unProducto : listaDeProductos) {
             unProducto.mostrarInformacion();
         }
-        
-        // empleado1.asignarApellidos("Ramirez");
-        // System.out.println(empleado1.verApellidos());
     }
 }

@@ -4,34 +4,40 @@ package usuarios.modelos;
 public class Empleado {
 
     // Atributos:
-    private String apellidos;
-    private String nombres;
+    private String apellido;
+    private String nombre;
     private String correo;
     private String contraseña;
 
     // Constructor: 
-    public Empleado (String apellidos, String nombres, String correo, String contraseña){
-        this.apellidos = apellidos;
-        this.nombres = nombres;
+    public Empleado (String apellido, String nombre, String correo, String contraseña){
+        this.apellido = apellido;
+        this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
     }
 
     // Métodos:
-    public String verApellidos() {
-        return apellidos;
+    public void mostrarInformacion() {
+        System.out.println("Nombre Completo: " + verApellido() + " " + verNombre());
+        System.out.println("Correo: " + verCorreo() + "\n");
+    }
+    
+    //Métodos ver/asignar (get/set):
+    public String verApellido() {
+        return apellido;
     }
 
-    public void asignarApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void asignarApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String verNombres() {
-        return nombres;
+    public String verNombre() {
+        return nombre;
     }
 
-    public void asignarNombres(String nombres) {
-        this.nombres = nombres;
+    public void asignarNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String verCorreo() {
@@ -48,10 +54,5 @@ public class Empleado {
 
     public void asignarContraseña(String contraseña) {
         this.contraseña = contraseña;
-    }
-
-    public void mostrarInformacion() {
-        System.out.println("Nombre Completo: " + verApellidos() + " " + verNombres());
-        System.out.println("Correo: " + verCorreo() + "\n");
     }
 }
