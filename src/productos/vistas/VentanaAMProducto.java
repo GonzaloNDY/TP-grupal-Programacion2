@@ -12,7 +12,6 @@ import productos.modelos.Producto;
 
 public class VentanaAMProducto extends JDialog {
     private ArrayList<Producto> productos = new ArrayList<>();
-    
     /*
      * Constructor
      * @param ventanaPadre ventana padre (VentanaUsuarios en este caso)
@@ -21,8 +20,7 @@ public class VentanaAMProducto extends JDialog {
         super(ventanaPadre, true);
         initComponents();
     }
-    
-      
+
     /*
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -163,7 +161,6 @@ public class VentanaAMProducto extends JDialog {
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

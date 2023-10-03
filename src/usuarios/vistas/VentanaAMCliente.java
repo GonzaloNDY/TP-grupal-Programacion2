@@ -12,7 +12,7 @@ import usuarios.modelos.Cliente;
 
 public class VentanaAMCliente extends JDialog {
     private ArrayList<Cliente> clientes = new ArrayList<>();
-    
+
     /**
      * Constructor
      * @param ventanaPadre ventana padre 
@@ -142,7 +142,7 @@ public class VentanaAMCliente extends JDialog {
         String clave = new String(this.passClave.getPassword());
         Cliente unCliente = new Cliente(apellido, nombre, correo, clave);
         this.clientes.add(unCliente);
-        
+
         System.out.println("Clientes");
         System.out.println("========");
         for(Cliente c : this.clientes) {
@@ -150,7 +150,6 @@ public class VentanaAMCliente extends JDialog {
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

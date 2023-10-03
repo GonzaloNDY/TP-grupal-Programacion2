@@ -11,7 +11,7 @@ public class Producto {
     private String estado;
 
 
-    // Constructor:
+    // Constructores:
     public Producto (int codigo, String descripcion, float precio, String categoria, String estado){
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -22,49 +22,45 @@ public class Producto {
 
     // Métodos:
     public void mostrarInformacion() {
-        System.out.println("Código del producto: " + verCodigo());
-        System.out.println("Descripción: " + verDescripcion());
-        System.out.println("Precio: $" + verPrecio());
-        System.out.println("Categoria: " + verCategoria());
-        System.out.println("Estado: " + verEstado());
+        System.out.println("Código del producto: " + codigo);
+        System.out.println("Descripción: " + descripcion);
+        System.out.println("Precio: $" + precio);
+        System.out.println("Categoria: " + categoria);
+        System.out.println("Estado: " + estado);
     }
 
+    // Get/set de codigo:
     public int verCodigo() {
         return codigo;
     }
-
     public void asignarCodigo(int codigo) {
         this.codigo = codigo;
     }
-
+    // Get/set de descripcion:
     public String verDescripcion() {
         return descripcion;
     }
-
     public void asignarDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    // Get/set de precio:
     public float verPrecio() {
         return precio;
     }
-
     public void asignarPrecio(float precio) {
         this.precio = precio;
     }
-
+    // Get/set de categoria:
     public String verCategoria() {
         return categoria;
     }
-
     public void asignarCategoria(String categoria) {
         this.categoria = categoria;
     }
-    
+    // Get/set de estado:
     public String verEstado() {
         return estado;
     }
-
     public void asignarEstado(String estado) {
         this.estado = estado;
     }

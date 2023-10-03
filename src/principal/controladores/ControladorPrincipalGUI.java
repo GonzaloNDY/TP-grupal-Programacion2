@@ -32,7 +32,7 @@ public class ControladorPrincipalGUI {
         ventanaProducto.setLocationRelativeTo(null);
         ventanaProducto.setTitle("Nuevo producto");
         ventanaProducto.setVisible(true);
-        
+
         //CLIENTE
 
         VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
@@ -55,7 +55,7 @@ public class ControladorPrincipalGUI {
         ventanaEncargado.setVisible(true);
 
     }
-    
+
     /*
      * Asigna el look and feel especificado a la ventana
      * @param laf cadena con el nombre del look and feel

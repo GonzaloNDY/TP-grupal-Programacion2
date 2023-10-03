@@ -30,7 +30,9 @@ public class ControladorPrincipal {
         Producto producto1 = new Producto(1234, "Taza de café", 500.00f, "Entrada", "Disponible");
         Producto producto2 = new Producto(5678, "Milanesa con papas", 1500.00f, "Plato principal", "Disponible");
         Producto producto3 = new Producto(9012, "Flan de leche", 300.00f, "Postre", "Disponible");
-
+        
+        // Definición de un arrraylist e instanciamiento de 3 objetos para cada clase:
+        
         ArrayList<Cliente> listaDeClientes = new ArrayList<>();
         listaDeClientes.add(cliente1);
         listaDeClientes.add(cliente2);
