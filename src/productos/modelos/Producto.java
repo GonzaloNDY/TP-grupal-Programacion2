@@ -10,7 +10,6 @@ public class Producto {
     private String categoria;
     private String estado;
 
-
     // Constructores:
     public Producto (int codigo, String descripcion, float precio, String categoria, String estado){
         this.codigo = codigo;
@@ -26,39 +25,48 @@ public class Producto {
         System.out.println("Descripción: " + descripcion);
         System.out.println("Precio: $" + precio);
         System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado);
+        System.out.println("Estado: " + estado + "\n");
     }
 
-    // Get/set de codigo:
+    @Override
+    public String toString() {
+        return "Codigo del producto: " + codigo + "\n" +
+                "Descripcion: " + descripcion + "\n" +
+                "Precio: $" + precio + "\n" +
+                "Categoria: " + categoria + "\n" +
+                "Estado: " + estado + "\n";
+    }   // Por el momento esta función toString no muestra caracteres acentuados
+
+    // Get/set de los atributos:
     public int verCodigo() {
         return codigo;
     }
     public void asignarCodigo(int codigo) {
         this.codigo = codigo;
     }
-    // Get/set de descripcion:
+
     public String verDescripcion() {
         return descripcion;
     }
     public void asignarDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    // Get/set de precio:
+
     public float verPrecio() {
         return precio;
     }
     public void asignarPrecio(float precio) {
         this.precio = precio;
     }
-    // Get/set de categoria:
-    public String verCategoria() {
+
+    public Categoria verCategoria() {
         return categoria;
     }
     public void asignarCategoria(String categoria) {
         this.categoria = categoria;
     }
-    // Get/set de estado:
-    public String verEstado() {
+
+    public Estado verEstado() {
         return estado;
     }
     public void asignarEstado(String estado) {

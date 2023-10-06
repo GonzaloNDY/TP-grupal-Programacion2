@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package principal.controladores;
 
 import javax.swing.UIManager;
@@ -34,21 +30,18 @@ public class ControladorPrincipalGUI {
         ventanaProducto.setVisible(true);
 
         //CLIENTE
-
         VentanaAMCliente ventanaCliente = new VentanaAMCliente(null);
         ventanaCliente.setLocationRelativeTo(null);
         ventanaCliente.setTitle("Nuevo cliente");
         ventanaCliente.setVisible(true);
     
        //EMPLEADO 
-
         VentanaAMEmpleado ventanaEmpleado = new VentanaAMEmpleado(null);
         ventanaEmpleado.setLocationRelativeTo(null);
         ventanaEmpleado.setTitle("Nuevo empleado");
         ventanaEmpleado.setVisible(true);
 
        //ENCARGADO
-
         VentanaAMEncargado ventanaEncargado = new VentanaAMEncargado(null);
         ventanaEncargado.setLocationRelativeTo(null);
         ventanaEncargado.setTitle("Nuevo encargado");

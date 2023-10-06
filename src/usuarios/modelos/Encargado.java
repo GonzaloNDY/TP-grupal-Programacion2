@@ -23,28 +23,28 @@ public class Encargado {
         System.out.println("Correo: " + correo + "\n");
     }
         
-    // Get/set de apellido:
+    // Get/set de los atributos:
     public String verApellido() {
         return apellido;
     }
     public void asignarApellido(String apellido) {
         this.apellido = apellido;
     }
-    // Get/set de nombre:
+
     public String verNombre() {
         return nombre;
     }
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-    // Get/set de correo:
+
     public String verCorreo() {
         return correo;
     }
     public void asignarCorreo(String correo) {
         this.correo = correo;
     }
-    // Get/set de clave:
+
     public String verclave() {
         return clave;
     }
