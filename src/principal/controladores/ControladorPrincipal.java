@@ -31,9 +31,9 @@ public class ControladorPrincipal {
         Encargado encargado2 = new Encargado("Carlos", "Perez", "asdfg@gmail.com", "gfdsa");
         Encargado encargado3 = new Encargado("Gabriel", "Diaz", "zxcvb@gmail.com", "bvcxz");
 
-        Producto producto1 = new Producto(1234, "Taza de café", 500f, "ENTRADA", "DISPONIBLE");
-        Producto producto2 = new Producto(5678, "Milanesa con papas", 1500.00f, "PLATO_PRINCIPAL", "DISPONIBLE");
-        Producto producto3 = new Producto(9876, "Flan de leche", 400f, "ENTRADA", "DISPONIBLE");
+        Producto producto1 = new Producto(1234, "Taza de café", 500f,Categoria.ENTRADA ,Estado.DISPONIBLE );
+        Producto producto2 = new Producto(5678, "Milanesa con papas", 1500.00f, Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE);
+        Producto producto3 = new Producto(9876, "Flan de leche", 400f, Categoria.POSTRE, Estado.NO_DISPONIBLE);
         
         // Adición de objetos a sus respectivos arraylist:
         listaDeClientes.add(cliente1);
