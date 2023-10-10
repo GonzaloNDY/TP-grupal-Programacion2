@@ -7,11 +7,11 @@ public class Producto {
     private int codigo;
     private String descripcion;
     private float precio;
-    private String categoria;
-    private String estado;
+    private Categoria categoria;
+    private Estado estado;
 
     // Constructores:
-    public Producto (int codigo, String descripcion, float precio, String categoria, String estado){
+    public Producto (int codigo, String descripcion, float precio, Categoria categoria, Estado estado){
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -62,14 +62,14 @@ public class Producto {
     public Categoria verCategoria() {
         return categoria;
     }
-    public void asignarCategoria(String categoria) {
+    public void asignarCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
     public Estado verEstado() {
         return estado;
     }
-    public void asignarEstado(String estado) {
+    public void asignarEstado(Estado estado) {
         this.estado = estado;
     }
 }
