@@ -1,6 +1,9 @@
 
 package usuarios.modelos;
 
+import java.util.ArrayList;
+import pedidos.modelos.Pedido;
+
 public class Cliente {
 
     // Atributos:
@@ -8,14 +11,23 @@ public class Cliente {
     private String nombre;
     private String correo;
     private String clave;
+    private ArrayList<Pedido> pedidosCliente;
 
     // Constructores: 
-    public Cliente (String apellido, String nombre, String correo, String clave){
+
+    public Cliente(String apellido, String nombre, String correo, String clave) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.correo = correo;
         this.clave = clave;
     }
+    
+    
+    public Cliente(String apellido, String nombre, String correo, String clave, ArrayList<Pedido> pedidosCliente) {
+       this(apellido,nombre,correo,clave);
+        this.pedidosCliente = pedidosCliente;
+    }
+ 
 
     // Métodos:
     public void mostrarInformacion() {
@@ -51,4 +63,13 @@ public class Cliente {
     public void asignarclave(String clave) {
         this.clave = clave;
     }
+
+    public ArrayList<Pedido> getPedidosCliente() {
+        return pedidosCliente;
+    }
+
+    public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
+        this.pedidosCliente = pedidosCliente;
+    }
+    
 }
