@@ -3,6 +3,7 @@ package principal.controladores;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import pedidos.modelos.EstadoPedido;
 import pedidos.modelos.Pedido;
 import productos.modelos.Categoria;
 import productos.modelos.Estado;
@@ -38,9 +39,9 @@ public class ControladorPrincipal {
         Producto producto2 = new Producto(5678, "Milanesa con papas", 1500.00f, Categoria.PLATOPRINCIPAL, Estado.DISPONIBLE);
         Producto producto3 = new Producto(9876, "Flan de leche", 400f, Categoria.POSTRE, Estado.NO_DISPONIBLE);
         
-        Pedido pedido1= new Pedido(1,LocalDateTime.now(), cliente1);
-        Pedido pedido2= new Pedido(2,LocalDateTime.now(), cliente2);
-        Pedido pedido3= new Pedido(3,LocalDateTime.now(), cliente3);
+        Pedido pedido1= new Pedido(1,LocalDateTime.now(), cliente1, EstadoPedido.CREADO);
+        Pedido pedido2= new Pedido(2,LocalDateTime.now(), cliente2, EstadoPedido.SOLICITADO);
+        Pedido pedido3= new Pedido(3,LocalDateTime.now(), cliente3, EstadoPedido.CREADO);
         // Adición de objetos a sus respectivos arraylist:
         listaDeClientes.add(cliente1);
         listaDeClientes.add(cliente2);

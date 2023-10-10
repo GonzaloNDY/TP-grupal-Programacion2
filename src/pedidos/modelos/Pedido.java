@@ -8,13 +8,16 @@ public class Pedido {
     private int numero;
     private LocalDateTime fechaYhora;
     private Cliente cliente;
-    private Estado estado;
+    private EstadoPedido estado;
 
-    public Pedido(int numero, LocalDateTime fechaYhora, Cliente cliente) {
+    public Pedido(int numero, LocalDateTime fechaYhora, Cliente cliente, EstadoPedido estado) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.cliente = cliente;
+        this.estado = estado;
     }
+
+   
 
     public int getNumero() {
         return numero;
@@ -39,6 +42,15 @@ public class Pedido {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public EstadoPedido getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoPedido estado) {
+        this.estado = estado;
+    }
+    
 
     public void mostrar() {
         System.out.println("\nNro:" + numero + "\n Fecha: " + fechaYhora
