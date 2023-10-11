@@ -2,7 +2,6 @@
 package productos.modelos;
 
 public class Producto {
-
     // Atributos:
     private int codigo;
     private String descripcion;
@@ -20,9 +19,8 @@ public class Producto {
     }
 
     // Métodos:
-    public void mostrarInformacion() {
-        System.out.println("Código del producto: " + codigo);
-        System.out.println("Descripción: " + descripcion);
+    public void mostrar() {
+        System.out.println("Producto: " + descripcion);
         System.out.println("Precio: $" + precio);
         System.out.println("Categoria: " + categoria);
         System.out.println("Estado: " + estado + "\n");
@@ -30,8 +28,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Codigo del producto: " + codigo + "\n" +
-                "Descripcion: " + descripcion + "\n" +
+        return "Producto: " + descripcion + "\n" +
                 "Precio: $" + precio + "\n" +
                 "Categoria: " + categoria + "\n" +
                 "Estado: " + estado + "\n";

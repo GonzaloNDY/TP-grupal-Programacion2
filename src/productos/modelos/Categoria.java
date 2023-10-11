@@ -10,7 +10,7 @@ package productos.modelos;
  */
 public enum Categoria {
     ENTRADA("ENTRADA"),
-    PLATOPRINCIPAL("PLATO_PRINCIPAL"),
+    PLATO_PRINCIPAL("PLATO_PRINCIPAL"),
     POSTRE("POSTRE");
     
     private String valor;

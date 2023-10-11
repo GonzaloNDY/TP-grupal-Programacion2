@@ -1,8 +1,7 @@
 
 package pedidos.modelos;
 
-
- public enum  EstadoPedido{
+public enum EstadoPedido {
         CREADO("CREADO"),
         SOLICITADO("SOLICITADO"),
         MODIFICADO("MODIFICADO"),
@@ -19,6 +18,6 @@ package pedidos.modelos;
         return this.valor;
     }
     
- }   
+}   
 
 

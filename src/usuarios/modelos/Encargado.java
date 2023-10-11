@@ -2,7 +2,6 @@
 package usuarios.modelos;
 
 public class Encargado {
-
     // Atributos:
     private String apellido;
     private String nombre;
@@ -18,8 +17,8 @@ public class Encargado {
     }
 
     // Métodos:
-    public void mostrarInformacion() {
-        System.out.println("Nombre Completo: " + apellido + ", " + nombre);
+    public void mostrar() {
+        System.out.println("Encargado: " + apellido + ", " + nombre);
         System.out.println("Correo: " + correo + "\n");
     }
         

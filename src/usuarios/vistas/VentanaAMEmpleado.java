@@ -146,7 +146,7 @@ public class VentanaAMEmpleado extends JDialog {
         System.out.println("Clientes");
         System.out.println("========");
         for(Empleado c : this.empleados) {
-            c.mostrarInformacion();
+            c.mostrar();
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic

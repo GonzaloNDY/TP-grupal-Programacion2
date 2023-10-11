@@ -157,7 +157,7 @@ public class VentanaAMProducto extends JDialog {
         System.out.println("Productos");
         System.out.println("=========");
         for(Producto p : this.productos) {
-            p.mostrarInformacion();
+            p.mostrar();
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic

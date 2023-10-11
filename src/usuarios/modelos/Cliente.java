@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente {
-
     // Atributos:
     private String apellido;
     private String nombre;
@@ -13,8 +12,7 @@ public class Cliente {
     private String clave;
     private ArrayList<Pedido> pedidosCliente;
 
-    // Constructores: 
-
+    // Constructores:
     public Cliente(String apellido, String nombre, String correo, String clave) {
         this.apellido = apellido;
         this.nombre = nombre;
@@ -22,16 +20,14 @@ public class Cliente {
         this.clave = clave;
     }
     
-    
     public Cliente(String apellido, String nombre, String correo, String clave, ArrayList<Pedido> pedidosCliente) {
-       this(apellido,nombre,correo,clave);
+        this(apellido,nombre,correo,clave);
         this.pedidosCliente = pedidosCliente;
     }
- 
 
     // Métodos:
-    public void mostrarInformacion() {
-        System.out.println("Nombre Completo: " + apellido + ", " + nombre);
+    public void mostrar() {
+        System.out.println("Cliente: " + apellido + ", " + nombre);
         System.out.println("Correo: " + correo + "\n");
     }
     
@@ -71,5 +67,4 @@ public class Cliente {
     public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
         this.pedidosCliente = pedidosCliente;
     }
-    
 }

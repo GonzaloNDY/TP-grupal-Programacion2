@@ -2,7 +2,6 @@
 package usuarios.modelos;
 
 public class Empleado {
-
     // Atributos:
     private String apellido;
     private String nombre;
@@ -18,8 +17,8 @@ public class Empleado {
     }
 
     // Métodos:
-    public void mostrarInformacion() {
-        System.out.println("Nombre Completo: " + apellido + ", " + nombre);
+    public void mostrar() {
+        System.out.println("Empleado: " + apellido + ", " + nombre);
         System.out.println("Correo: " + correo + "\n");
     }
     
