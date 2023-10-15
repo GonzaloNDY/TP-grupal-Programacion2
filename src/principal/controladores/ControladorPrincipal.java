@@ -1,4 +1,3 @@
-
 package principal.controladores;
 
 import java.time.LocalDateTime;
@@ -13,6 +12,7 @@ import usuarios.modelos.Empleado;
 import usuarios.modelos.Encargado;
 
 public class ControladorPrincipal {
+
     public static void main(String[] args) {
         // Definición de un arrraylist para cada clase:
         ArrayList<Cliente> listaDeClientes = new ArrayList<>();
@@ -20,7 +20,7 @@ public class ControladorPrincipal {
         ArrayList<Encargado> listaDeEncargados = new ArrayList<>();
         ArrayList<Producto> listaDeProductos = new ArrayList<>();
         ArrayList<Pedido> listaDePedidos = new ArrayList<>();
-        
+
         // Clientes:
         Cliente cliente1 = new Cliente("Diaz", "Gonzalo", "qwerty@gmail.com", "ytrewq");
         Cliente cliente2 = new Cliente("Neptali", "Yarahuaman", "asdfg@gmail.com", "gfdsa");
@@ -57,7 +57,7 @@ public class ControladorPrincipal {
         Encargado encargado1 = new Encargado("Juan", "Sanchez", "qwerty@gmail.com", "ytrewq");
         Encargado encargado2 = new Encargado("Carlos", "Perez", "asdfg@gmail.com", "gfdsa");
         Encargado encargado3 = new Encargado("Gabriel", "Diaz", "zxcvb@gmail.com", "bvcxz");
-        
+
         listaDeEncargados.add(encargado1);
         listaDeEncargados.add(encargado2);
         listaDeEncargados.add(encargado3);
@@ -70,7 +70,7 @@ public class ControladorPrincipal {
         System.out.println();
 
         // Productos:
-        Producto producto1 = new Producto(1234, "Taza de cafe", 500f,Categoria.ENTRADA ,Estado.DISPONIBLE );
+        Producto producto1 = new Producto(1234, "Taza de cafe", 500f, Categoria.ENTRADA, Estado.DISPONIBLE);
         Producto producto2 = new Producto(5678, "Milanesa con papas", 1500.00f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE);
         Producto producto3 = new Producto(9876, "Flan de leche", 400f, Categoria.POSTRE, Estado.NO_DISPONIBLE);
 
@@ -98,7 +98,7 @@ public class ControladorPrincipal {
         System.out.println("================");
 
         // Pedidos:
-    /*  ArrayList<ProductoDelPedido> pdp1 = new ArrayList<>();
+        /*  ArrayList<ProductoDelPedido> pdp1 = new ArrayList<>();
         pdp1.add(new ProductoDelPedido(producto1, 1));
         pdp1.add(new ProductoDelPedido(producto2, 2));
         Pedido pedido1 = new Pedido(1, LocalDateTime.now(), pdp1, cliente1);        
@@ -112,6 +112,9 @@ public class ControladorPrincipal {
         pdp3.add(new ProductoDelPedido(producto1, 100));
         pdp3.add(new ProductoDelPedido(producto2, 200));
         Pedido pedido3 = new Pedido(3, LocalDateTime.now(), pdp3, cliente3);    */
+        Pedido pedido1 = new Pedido(1, LocalDateTime.now(), cliente1, EstadoPedido.CREADO);
+        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), cliente2, EstadoPedido.CREADO);
+        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), cliente3, EstadoPedido.CREADO);
 
         listaDePedidos.add(pedido1);
         listaDePedidos.add(pedido2);
