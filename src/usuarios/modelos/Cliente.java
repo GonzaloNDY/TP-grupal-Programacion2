@@ -1,10 +1,10 @@
-
 package usuarios.modelos;
 
 import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente {
+
     // Atributos:
     private String apellido;
     private String nombre;
@@ -13,15 +13,15 @@ public class Cliente {
     private ArrayList<Pedido> pedidosCliente;
 
     // Constructores:
-    public Cliente(String apellido, String nombre, String correo, String clave) {
-        this.apellido = apellido;
-        this.nombre = nombre;
+    public Cliente(String correo, String clave , String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
+        this.apellido = apellido;
+        this.nombre = nombre;
     }
-    
+
     public Cliente(String apellido, String nombre, String correo, String clave, ArrayList<Pedido> pedidosCliente) {
-        this(apellido,nombre,correo,clave);
+        this(apellido, nombre, correo, clave);
         this.pedidosCliente = pedidosCliente;
     }
 
@@ -30,11 +30,12 @@ public class Cliente {
         System.out.println("Cliente: " + apellido + ", " + nombre);
         System.out.println("Correo: " + correo + "\n");
     }
-    
+
     // Get/set de los atributos:
     public String verApellido() {
         return apellido;
     }
+
     public void asignarApellido(String apellido) {
         this.apellido = apellido;
     }
@@ -42,6 +43,7 @@ public class Cliente {
     public String verNombre() {
         return nombre;
     }
+
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -49,6 +51,7 @@ public class Cliente {
     public String verCorreo() {
         return correo;
     }
+
     public void asignarCorreo(String correo) {
         this.correo = correo;
     }
@@ -56,6 +59,7 @@ public class Cliente {
     public String verclave() {
         return clave;
     }
+
     public void asignarclave(String clave) {
         this.clave = clave;
     }

@@ -9,11 +9,11 @@ public class Empleado {
     private String clave;
 
     // Constructores: 
-    public Empleado (String apellido, String nombre, String correo, String clave){
-        this.apellido = apellido;
-        this.nombre = nombre;
+   public Empleado(String correo, String clave , String apellido, String nombre) {
         this.correo = correo;
         this.clave = clave;
+        this.apellido = apellido;
+        this.nombre = nombre;
     }
 
     // Métodos:
