@@ -112,10 +112,7 @@ public class ControladorPrincipal {
         pdp3.add(new ProductoDelPedido(producto1, 100));
         pdp3.add(new ProductoDelPedido(producto2, 200));
         Pedido pedido3 = new Pedido(3, LocalDateTime.now(), pdp3, cliente3);    */
-        Pedido pedido1 = new Pedido(1, LocalDateTime.now(), cliente1, EstadoPedido.CREADO);
-        Pedido pedido2 = new Pedido(2, LocalDateTime.now(), cliente2, EstadoPedido.CREADO);
-        Pedido pedido3 = new Pedido(3, LocalDateTime.now(), cliente3, EstadoPedido.CREADO);
-
+      
         listaDePedidos.add(pedido1);
         listaDePedidos.add(pedido2);
         listaDePedidos.add(pedido3);
