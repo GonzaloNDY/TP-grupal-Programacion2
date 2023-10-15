@@ -31,9 +31,12 @@ public class Pedido {
     public void mostrar() {
         System.out.println("\nNro:" + numero + "\nFecha: " + getFecha()
                 + "\t\t\t Hora: " + getHora().getHour() + ":" + getHora().getMinute() + "\nCliente: " + cliente.verApellido()
-                + ", " + cliente.verNombre() + "\nEstado: " + estado + "\n\tProducto \t\t Cantidad \n\t=============================");
-        System.out.println(productoDelPedido);
-
+                + ", " + cliente.verNombre() + "\nEstado: " + estado + "\n\tProducto \t\t Cantidad \n\t=================================");
+        for (ProductoDelPedido pdp: productoDelPedido){
+        System.out.println("\t" + pdp);
+    
+        }
+        
     }
 
     // Get/set de los atributos:

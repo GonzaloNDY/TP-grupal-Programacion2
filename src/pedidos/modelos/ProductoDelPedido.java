@@ -30,7 +30,7 @@ public class ProductoDelPedido {
 
     @Override
     public String toString() {
-        return   producto.verDescripcion() + "\t" + cantidad ;
+        return   producto.verDescripcion() + "\t\t     " + cantidad ;
     }
 
    
