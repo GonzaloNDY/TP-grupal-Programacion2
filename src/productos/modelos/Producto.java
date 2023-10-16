@@ -22,47 +22,47 @@ public class Producto {
     public void mostrar() {
         System.out.println("Producto: " + descripcion);
         System.out.println("Precio: $" + precio);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Estado: " + estado + "\n");
+        System.out.println("Categoria: " + categoria + "\tVigencia: " + estado + "\n");
     }
 
     @Override
     public String toString() {
         return "Producto: " + descripcion + "\n" +
                 "Precio: $" + precio + "\n" +
-                "Categoria: " + categoria + "\n" +
-                "Estado: " + estado + "\n";
-    }   // Por el momento esta función toString no muestra caracteres acentuados
+                "Categoria: " + categoria + "\t" +
+                "Vigencia: " + estado + "\n";
+    }
 
     // Get/set de los atributos:
+    // Codigo:
     public int verCodigo() {
         return codigo;
     }
     public void asignarCodigo(int codigo) {
         this.codigo = codigo;
     }
-
+    // Descripcion:
     public String verDescripcion() {
         return descripcion;
     }
     public void asignarDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    // Precio:
     public float verPrecio() {
         return precio;
     }
     public void asignarPrecio(float precio) {
         this.precio = precio;
     }
-
+    // Categoria:
     public Categoria verCategoria() {
         return categoria;
     }
     public void asignarCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
+    // Estado:
     public Estado verEstado() {
         return estado;
     }

@@ -24,27 +24,28 @@ public class Encargado {
     }
         
     // Get/set de los atributos:
+    // Apellido:
     public String verApellido() {
         return apellido;
     }
     public void asignarApellido(String apellido) {
         this.apellido = apellido;
     }
-
+    // Nombre:
     public String verNombre() {
         return nombre;
     }
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    // Correo:
     public String verCorreo() {
         return correo;
     }
     public void asignarCorreo(String correo) {
         this.correo = correo;
     }
-
+    // Clave:
     public String verclave() {
         return clave;
     }

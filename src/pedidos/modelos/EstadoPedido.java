@@ -1,4 +1,3 @@
-
 package pedidos.modelos;
 
 public enum EstadoPedido {

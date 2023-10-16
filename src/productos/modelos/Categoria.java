@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package productos.modelos;
 
-/**
- *
- * @author Windows PC
- */
 public enum Categoria {
-    ENTRADA("ENTRADA"),
-    PLATOPRINCIPAL("PLATOPRINCIPAL"),
-    POSTRE("POSTRE");
+    ENTRADA("Entrada"),
+    PLATO_PRINCIPAL("Plato principal"),
+    POSTRE("Postre");
     
     private String valor;
     

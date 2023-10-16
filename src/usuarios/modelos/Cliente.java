@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente {
-
     // Atributos:
     private String apellido;
     private String nombre;
@@ -32,42 +31,38 @@ public class Cliente {
     }
 
     // Get/set de los atributos:
+    // Apellido:
     public String verApellido() {
         return apellido;
     }
-
     public void asignarApellido(String apellido) {
         this.apellido = apellido;
     }
-
+    // Nombre:
     public String verNombre() {
         return nombre;
     }
-
     public void asignarNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    // Correo:
     public String verCorreo() {
         return correo;
     }
-
     public void asignarCorreo(String correo) {
         this.correo = correo;
     }
-
+    // Clave:
     public String verclave() {
         return clave;
     }
-
     public void asignarclave(String clave) {
         this.clave = clave;
     }
-
+    // PedidosCliente:
     public ArrayList<Pedido> getPedidosCliente() {
         return pedidosCliente;
     }
-
     public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
         this.pedidosCliente = pedidosCliente;
     }
