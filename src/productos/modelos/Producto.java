@@ -33,6 +33,24 @@ public class Producto {
                 "Vigencia: " + estado + "\n";
     }
 
+    @Override
+    public boolean equals(Object objeto) {
+        if (objeto == null || getClass() != objeto.getClass())
+            return false;
+        if (this == objeto)
+            return true;
+        Producto otroProducto = (Producto) objeto;
+        // Comparo los códigos de los productos:
+        return this.codigo == otroProducto.codigo;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 11;
+        hash = 19 * hash + this.codigo;
+        return hash;
+    }
+
     // Get/set de los atributos:
     // Codigo:
     public int verCodigo() {

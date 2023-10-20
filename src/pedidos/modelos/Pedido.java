@@ -33,10 +33,26 @@ public class Pedido {
                 + "\n\tProducto \t\t Cantidad "
                 + "\n\t=================================");
         for (ProductoDelPedido pdp: productoDelPedido){
-        // Defino un ancho fijo de 24 caracteres(24s) para pdp.getProducto().verDescripcion(), que se alineará a la izquierda(-):
             System.out.printf("\t%-24s %d\n", pdp.getProducto().verDescripcion(), pdp.getCantidad());
-        // Sout.printf brinda mas flexibilidad y precisión en la alineación y formato
         }
+    }
+
+    @Override
+    public boolean equals(Object objeto) {
+        if (objeto == null || getClass() != objeto.getClass())
+            return false;
+        if (this == objeto)
+            return true;
+        Pedido otroPedido = (Pedido) objeto;
+        // Comparo los números de los pedidos:
+        return this.numero == otroPedido.numero;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + this.numero;
+        return hash;
     }
 
     // Get/set de los atributos
