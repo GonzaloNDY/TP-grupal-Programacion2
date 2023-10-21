@@ -5,19 +5,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import productos.modelos.Producto;
-import usuarios.modelos.Cliente;
+import usuarios.modelos.Usuario;
 
 public class Pedido {
     // Atributos:
     private int numero;
     private LocalDateTime fechaYhora;
-    private Cliente cliente;
+    private Usuario cliente;
     private EstadoPedido estado;
     private ArrayList<ProductoDelPedido> productoDelPedido;  
     private Producto producto;
 
     // Constructores: 
-    public Pedido(int numero, LocalDateTime fechaYhora, ArrayList<ProductoDelPedido> productoDelPedido, Cliente cliente ,EstadoPedido estado) {
+    public Pedido(int numero, LocalDateTime fechaYhora, ArrayList<ProductoDelPedido> productoDelPedido, Usuario cliente ,EstadoPedido estado) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.cliente = cliente;
@@ -28,7 +28,7 @@ public class Pedido {
     // Métodos:
     public void mostrar() {
         System.out.println("\n\nNro:" + numero + "\nFecha: " + getFecha() + "\t\tHora: " + getHora().getHour() + ":" + getHora().getMinute()
-                + "\nCliente: " + cliente.verApellido() + ", " + cliente.verNombre()
+                + "\nCliente: " + cliente.getApellido() + ", " + cliente.getNombre()
                 + "\nEstado: " + estado
                 + "\n\tProducto \t\t Cantidad "
                 + "\n\t=================================");
@@ -78,10 +78,10 @@ public class Pedido {
         fechaYhora = fechaYhora.toLocalDate().atTime(hora);    // Asigna solo a la hora
     }
     // Cliente:
-    public Cliente getCliente() {
+    public Usuario getCliente() {
         return cliente;
     }
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Usuario cliente) {
         this.cliente = cliente;
     }
     // Estado:
