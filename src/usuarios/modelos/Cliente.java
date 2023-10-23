@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import pedidos.modelos.Pedido;
 
 public class Cliente extends Usuario {
-
     // Atributos:
-    private ArrayList<Pedido> pedidosCliente;
+    private ArrayList<Pedido> pedidosCliente = new ArrayList<>();
 
     // Constructores: 
     public Cliente(String apellido, String nombre, String correo, String clave) {
@@ -26,39 +25,27 @@ public class Cliente extends Usuario {
         System.out.println("Correo: " + super.getCorreo() + "\n");
     }
 
-    // Get/set de los atributos:
-//   
-// Get/set de los atributos:
-// 
-//   SI USO LOS METODOS DE LA SUPERCLASE, YA NO SE UTILIZAN ESTOS METODOS DE LA SUBCLASE, SE DEBERIAN BORRAR??? 
-//    
-//    public String verApellido() {
-//        return apellido;
-//    }
-//    public void asignarApellido(String apellido) {
-//        this.apellido = apellido;
-//    }
-//    // Nombre:
-//    public String verNombre() {
-//        return nombre;
-//    }
-//    public void asignarNombre(String nombre) {
-//        this.nombre = nombre;
-//    }
-//    // Correo:
-//    public String verCorreo() {
-//        return correo;
-//    }
-//    public void asignarCorreo(String correo) {
-//        this.correo = correo;
-//    }
-//    // Clave:
-//    public String verclave() {
-//        return clave;
-//    }
-//    public void asignarclave(String clave) {
-//        this.clave = clave;
-//    }
+    @Override
+    public ArrayList<Pedido> verPedidos(){
+        return pedidosCliente;
+    }
+
+    public void agregarPedido(Pedido unPedido){
+        for (int i = 0; i < pedidosCliente.size(); i++) {
+            Pedido pedidoActual = pedidosCliente.get(i);
+            if (pedidoActual.equals(unPedido)) {
+                pedidosCliente.set(i, unPedido);    // Reemplazo el pedido si ya estaba en el arraylist
+                return;
+            }
+        }
+        // Si llegamos aqui significa que no habia pedidos repetidos
+        pedidosCliente.add(unPedido);
+    }
+
+    public void cancelarPedido(Pedido unPedido){
+        pedidosCliente.remove(unPedido);
+    }
+
     // PedidosCliente:
     public ArrayList<Pedido> getPedidosCliente() {
         return pedidosCliente;

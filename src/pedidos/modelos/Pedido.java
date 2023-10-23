@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Objects;
 import productos.modelos.Producto;
 import usuarios.modelos.Usuario;
 
@@ -27,7 +28,8 @@ public class Pedido {
 
     // Métodos:
     public void mostrar() {
-        System.out.println("\n\nNro:" + numero + "\nFecha: " + getFecha() + "\t\tHora: " + getHora().getHour() + ":" + getHora().getMinute()
+        System.out.println("\n\nNro:" + numero 
+                + "\nFecha: " + getFecha() + "\t\tHora: " + getHora().getHour() + ":" + getHora().getMinute()
                 + "\nCliente: " + cliente.getApellido() + ", " + cliente.getNombre()
                 + "\nEstado: " + estado
                 + "\n\tProducto \t\t Cantidad "
@@ -50,9 +52,7 @@ public class Pedido {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + this.numero;
-        return hash;
+        return Objects.hash(numero);
     }
 
     // Get/set de los atributos

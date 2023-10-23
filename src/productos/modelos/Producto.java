@@ -1,5 +1,6 @@
-
 package productos.modelos;
+
+import java.util.Objects;
 
 public class Producto {
     // Atributos:
@@ -46,9 +47,7 @@ public class Producto {
 
     @Override
     public int hashCode() {
-        int hash = 11;
-        hash = 19 * hash + this.codigo;
-        return hash;
+        return Objects.hash(codigo);
     }
 
     // Get/set de los atributos:

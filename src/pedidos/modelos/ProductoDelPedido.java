@@ -1,5 +1,6 @@
 package pedidos.modelos;
 
+import java.util.Objects;
 import productos.modelos.Producto;
 
 public class ProductoDelPedido {
@@ -27,9 +28,7 @@ public class ProductoDelPedido {
 
     @Override
     public int hashCode() {
-        int hash = 13;
-        hash = 17 * hash + producto.hashCode();
-        return hash;
+        return Objects.hash(producto);
     }
 
     // Get/set de los atributos:
