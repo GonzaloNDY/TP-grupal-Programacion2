@@ -1,4 +1,4 @@
-package pedidos.modelos;
+package pedido.modelos;
 
 public enum Estado {
         CREADO("Creado"),

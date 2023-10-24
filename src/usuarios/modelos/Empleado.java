@@ -2,7 +2,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
-import pedidos.modelos.Pedido;
+import pedido.modelos.Pedido;
 
 public class Empleado extends Usuario{
     // Constructores: 
@@ -14,8 +14,8 @@ public class Empleado extends Usuario{
     // Métodos:
      @Override
     public void mostrar() {
-        System.out.println("Empleado: " + super.getApellido() + ", " + super.getNombre());
-        System.out.println("Correo: " + super.getCorreo() + "\n");
+        System.out.println("Empleado: " + super.verApellido() + ", " + super.verNombre());
+        System.out.println("Correo: " + super.verCorreo() + "\n");
     }
     
     @Override

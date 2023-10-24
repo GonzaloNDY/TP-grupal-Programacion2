@@ -2,7 +2,7 @@ package usuarios.modelos;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import pedidos.modelos.Pedido;
+import pedido.modelos.Pedido;
 
 public abstract class Usuario {
 
@@ -50,35 +50,35 @@ public abstract class Usuario {
     }
 
     // Métodos get/set:
-    public String getApellido() {
+    public String verApellido() {
         return apellido;
     }
 
-    public void setApellido(String apellido) {
+    public void asignarApellido(String apellido) {
         this.apellido = apellido;
     }
 
-    public String getNombre() {
+    public String verNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void asignaNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getClave() {
+    public String verClave() {
         return clave;
     }
 
-    public void setClave(String clave) {
+    public void asignaClave(String clave) {
         this.clave = clave;
     }
 
-    public String getCorreo() {
+    public String verCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public void asignaCorreo(String correo) {
         this.correo = correo;
     }
 

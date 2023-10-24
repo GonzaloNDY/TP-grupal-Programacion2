@@ -1,4 +1,4 @@
-package pedidos.modelos;
+package pedido.modelos;
 
 import java.util.Objects;
 import productos.modelos.Producto;
@@ -23,7 +23,7 @@ public class ProductoDelPedido {
             return true;
         ProductoDelPedido otropdp = (ProductoDelPedido) objeto;
         // Comparo usando el método equals de Producto:
-        return this.producto.equals(otropdp.getProducto());
+        return this.producto.equals(otropdp.verProducto());
     }
 
     @Override
@@ -33,17 +33,17 @@ public class ProductoDelPedido {
 
     // Get/set de los atributos:
     // Cantidad:
-    public int getCantidad() {
+    public int verCantidad() {
         return cantidad;
     }
-    public void setCantidad(int cantidad) {
+    public void asignarCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
     // Producto:
-    public Producto getProducto() {
+    public Producto verProducto() {
         return producto;
     }
-    public void setProducto(Producto producto) {
+    public void asignarProducto(Producto producto) {
         this.producto = producto;
     }
 }

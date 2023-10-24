@@ -1,7 +1,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
-import pedidos.modelos.Pedido;
+import pedido.modelos.Pedido;
 
 public class Cliente extends Usuario {
     // Atributos:
@@ -34,8 +34,8 @@ public class Cliente extends Usuario {
     
     @Override
     public void mostrar() {
-        System.out.println("Cliente: " + super.getApellido() + ", " + super.getNombre());
-        System.out.println("Correo: " + super.getCorreo() + "\n");
+        System.out.println("Cliente: " + super.verApellido() + ", " + super.verNombre());
+        System.out.println("Correo: " + super.verCorreo() + "\n");
     }
 
     @Override
