@@ -7,11 +7,10 @@ import usuarios.modelos.Empleado;
 import usuarios.modelos.Cliente;
 import java.util.ArrayList;
 import java.util.Arrays;
-import pedidos.modelos.EstadoPedido;
+import pedidos.modelos.Estado;
 import pedidos.modelos.Pedido;
 import pedidos.modelos.ProductoDelPedido;
 import productos.modelos.Categoria;
-import productos.modelos.Estado;
 import usuarios.modelos.Usuario;
 
 public class ControladorPrincipal {
@@ -98,11 +97,11 @@ public class ControladorPrincipal {
          System.out.println();
 
         // Productos:
-        Producto unProducto1 = new Producto(1, "Producto1", 100.0f, Categoria.ENTRADA, Estado.DISPONIBLE);
-        Producto unProducto2 = new Producto(2, "Producto2", 200.0f, Categoria.PLATO_PRINCIPAL, Estado.DISPONIBLE);
-        Producto unProducto3 = new Producto(3, "Producto3", 300.0f, Categoria.POSTRE, Estado.DISPONIBLE);
-        Producto unProducto4 = new Producto(4, "Producto4", 400.0f, Categoria.POSTRE, Estado.NO_DISPONIBLE);
-        Producto unProducto5 = new Producto(3, "Producto5", 500.0f, Categoria.POSTRE, Estado.NO_DISPONIBLE);
+        Producto unProducto1 = new Producto(1, "Producto1", Categoria.ENTRADA, productos.modelos.Estado.DISPONIBLE, 100.0f);
+        Producto unProducto2 = new Producto(2, "Producto2", Categoria.PLATO_PRINCIPAL, productos.modelos.Estado.DISPONIBLE, 200.0f);
+        Producto unProducto3 = new Producto(3, "Producto3", Categoria.POSTRE, productos.modelos.Estado.DISPONIBLE, 300.0f);
+        Producto unProducto4 = new Producto(4, "Producto4", Categoria.POSTRE, productos.modelos.Estado.NO_DISPONIBLE, 400.0f);
+        Producto unProducto5 = new Producto(3, "Producto5", Categoria.POSTRE, productos.modelos.Estado.NO_DISPONIBLE, 500.0f);
         // Verifico si hay productos repetidos:
         if (!listaProductos.contains(unProducto1)) {
             listaProductos.add(unProducto1);
@@ -137,7 +136,7 @@ public class ControladorPrincipal {
         if (!listapdp1.contains(pdp2)) {
             listapdp1.add(pdp2);
         }
-        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, (Cliente)listaUsuarios.get(0), EstadoPedido.CREADO);
+        Pedido unPedido1 = new Pedido(1, LocalDateTime.now(), listapdp1, (Cliente)listaUsuarios.get(0), Estado.CREADO);
 
         ArrayList<ProductoDelPedido> listapdp2 = new ArrayList<>();
         ProductoDelPedido pdp3 = new ProductoDelPedido(unProducto1, 10);
@@ -149,7 +148,7 @@ public class ControladorPrincipal {
         if (!listapdp2.contains(pdp4)) {
             listapdp2.add(pdp4);
         }
-        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listapdp2, (Cliente)listaUsuarios.get(1), EstadoPedido.CREADO);
+        Pedido unPedido2 = new Pedido(2, LocalDateTime.now(), listapdp2, (Cliente)listaUsuarios.get(1), Estado.CREADO);
 
         ArrayList<ProductoDelPedido> listapdp3 = new ArrayList<>();
         ProductoDelPedido pdp5 = new ProductoDelPedido(unProducto4, 30);
@@ -165,7 +164,7 @@ public class ControladorPrincipal {
         if (!listapdp3.contains(pdp7)) {
             listapdp3.add(pdp7);
         }
-        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), listapdp3, (Cliente)listaUsuarios.get(2), EstadoPedido.CREADO);
+        Pedido unPedido3 = new Pedido(3, LocalDateTime.now(), listapdp3, (Cliente)listaUsuarios.get(2), Estado.CREADO);
 
         ArrayList<ProductoDelPedido> listapdp4 = new ArrayList<>();
         ProductoDelPedido pdp8 = new ProductoDelPedido(unProducto2, 20);
@@ -185,7 +184,7 @@ public class ControladorPrincipal {
         if (!listapdp4.contains(pdp11)) {
             listapdp4.add(pdp11);
         }
-        Pedido unPedido4 = new Pedido(4, LocalDateTime.now(), listapdp4, (Cliente)listaUsuarios.get(3), EstadoPedido.CREADO);
+        Pedido unPedido4 = new Pedido(4, LocalDateTime.now(), listapdp4, (Cliente)listaUsuarios.get(3), Estado.CREADO);
 
         // Verifico si hay pedidos repetidos:
         if (!listaPedidos.contains(unPedido1)) {
@@ -210,16 +209,19 @@ public class ControladorPrincipal {
 
         ((Cliente)unCliente1).agregarPedido(unPedido1);
         ((Cliente)unCliente1).agregarPedido(unPedido2);
+        ((Cliente)unCliente1).agregarPedido(unPedido3);
         ((Cliente)unCliente1).agregarPedido(unPedido1); //pedido repetido
+        ((Cliente)unCliente1).agregarPedido(unPedido3); //pedido repetido
         
-        System.out.println("Pedidos de " + unCliente1.getApellido() + ", " + unCliente1.getNombre() + ":");
+        System.out.println("\nPedidos de " + unCliente1.getApellido() + ", " + unCliente1.getNombre() + ":");
         for(Pedido p : unCliente1.verPedidos()) {
             p.mostrar();
             System.out.println();
         }
         System.out.println();
         
-        ((Cliente)unCliente1).cancelarPedido(unPedido1);
+        ((Cliente)unCliente1).cancelarPedido(unPedido2);
+        ((Cliente)unCliente1).cancelarPedido(unPedido3);
         
         System.out.println("Pedidos de " + unCliente1.getApellido() + ", " + unCliente1.getNombre() + ":");
         for(Pedido unPedido : unCliente1.verPedidos()) {

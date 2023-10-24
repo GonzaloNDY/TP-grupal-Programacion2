@@ -13,12 +13,12 @@ public class Pedido {
     private int numero;
     private LocalDateTime fechaYhora;
     private Usuario cliente;
-    private EstadoPedido estado;
+    private Estado estado;
     private ArrayList<ProductoDelPedido> productoDelPedido;  
     private Producto producto;
 
     // Constructores: 
-    public Pedido(int numero, LocalDateTime fechaYhora, ArrayList<ProductoDelPedido> productoDelPedido, Usuario cliente ,EstadoPedido estado) {
+    public Pedido(int numero, LocalDateTime fechaYhora, ArrayList<ProductoDelPedido> productoDelPedido, Usuario cliente ,Estado estado) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.cliente = cliente;
@@ -28,7 +28,7 @@ public class Pedido {
 
     // Métodos:
     public void mostrar() {
-        System.out.println("\n\nNro:" + numero 
+        System.out.println("\nNro:" + numero 
                 + "\nFecha: " + getFecha() + "\t\tHora: " + getHora().getHour() + ":" + getHora().getMinute()
                 + "\nCliente: " + cliente.getApellido() + ", " + cliente.getNombre()
                 + "\nEstado: " + estado
@@ -85,10 +85,10 @@ public class Pedido {
         this.cliente = cliente;
     }
     // Estado:
-    public EstadoPedido getEstado() {
+    public Estado getEstado() {
         return estado;
     }
-    public void setEstado(EstadoPedido estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
     // ProductoDelPedido:

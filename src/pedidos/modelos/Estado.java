@@ -1,6 +1,6 @@
 package pedidos.modelos;
 
-public enum EstadoPedido {
+public enum Estado {
         CREADO("Creado"),
         SOLICITADO("Solicitado"),
         MODIFICADO("Modificado"),
@@ -8,7 +8,7 @@ public enum EstadoPedido {
         
     private String valor;
 
-    private EstadoPedido(String valor) {
+    private Estado(String valor) {
         this.valor = valor;
     }
 
