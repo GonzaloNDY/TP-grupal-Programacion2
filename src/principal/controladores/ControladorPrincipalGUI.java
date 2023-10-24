@@ -1,4 +1,3 @@
-
 package principal.controladores;
 
 import javax.swing.UIManager;
@@ -23,7 +22,7 @@ public class ControladorPrincipalGUI {
     * Se hace visible la ventana
     */
         establecerLookAndFeel("Nimbus"); 
-        // PRODUCTO
+//         PRODUCTO
         VentanaAMProducto ventanaProducto = new VentanaAMProducto(null);
         ventanaProducto.setLocationRelativeTo(null);
         ventanaProducto.setTitle("Nuevo producto");

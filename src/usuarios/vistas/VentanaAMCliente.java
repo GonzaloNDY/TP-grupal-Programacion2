@@ -13,7 +13,7 @@ import usuarios.modelos.Cliente;
 public class VentanaAMCliente extends JDialog {
     private ArrayList<Cliente> clientes = new ArrayList<>();
 
-    /**
+    /*
      * Constructor
      * @param ventanaPadre ventana padre 
      */
@@ -139,8 +139,9 @@ public class VentanaAMCliente extends JDialog {
         String apellido = this.txtApellido.getText().trim();
         String nombre = this.txtNombre.getText().trim();
         String clave = new String(this.passClave.getPassword());
-        Cliente unCliente = new Cliente(apellido, nombre, correo, clave);
-        this.clientes.add(unCliente);
+        Cliente unCliente = new Cliente( correo, clave,apellido, nombre);
+        if (!this.clientes.contains(unCliente))
+            this.clientes.add(unCliente);
 
         System.out.println("Clientes");
         System.out.println("========");

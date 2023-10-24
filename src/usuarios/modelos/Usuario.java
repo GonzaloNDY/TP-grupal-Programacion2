@@ -12,7 +12,7 @@ public abstract class Usuario {
     private String correo;
     
     // Constructores:
-    public Usuario(String apellido, String nombre, String correo, String clave) {
+    public Usuario(String correo, String clave,String apellido, String nombre ) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.correo = correo;
@@ -24,7 +24,9 @@ public abstract class Usuario {
 
     @Override
     public int hashCode() {
-        return Objects.hash(correo);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.correo);
+        return hash;
     }
 
     @Override
@@ -35,15 +37,19 @@ public abstract class Usuario {
         if (obj == null) {
             return false;
         }
-        // Esta línea permite la comparación entre diferentes subclases de Usuario
-        if (!(obj instanceof Usuario)) {
-            return false;
-        }
-        Usuario other = (Usuario) obj;
-        //comparo los correos de los usuarios
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+          if (!(obj instanceof Usuario))
+          {
+               return false;
+          }
+           
+         Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
-    
+
+  
     public void mostrar() {
         System.out.println("Usuario: " + apellido + ", " + nombre);
         System.out.println("Correo Electronico: " + correo);

@@ -6,8 +6,8 @@ import pedido.modelos.Pedido;
 
 public class Empleado extends Usuario{
     // Constructores: 
-    public Empleado(String apellido, String nombre, String correo, String clave) {
-        super(apellido, nombre, correo, clave);
+    public Empleado(String correo, String clave,String apellido, String nombre ) {
+        super( correo, clave,apellido, nombre);
 
     }
 

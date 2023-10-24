@@ -2,13 +2,14 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import pedido.modelos.Pedido;
 
 public class Encargado extends Usuario {
     // Constructores: 
-     public Encargado( String apellido, String nombre, String correo, String clave ) {
-      super(apellido, nombre, correo, clave);
-    
+     public Encargado(String correo, String clave,String apellido, String nombre ) {
+        super( correo, clave,apellido, nombre);
+
     }
 
     // Métodos:
