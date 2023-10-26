@@ -3,7 +3,7 @@ package productos.modelos;
 import java.util.Objects;
 
 public class Producto {
-    // Atributos:
+    // Atributos de Producto:
     private int codigo;
     private String descripcion;
     private float precio;
@@ -26,6 +26,7 @@ public class Producto {
         System.out.println("Categoria: " + categoria + "\tVigencia: " + estado + "\n");
     }
 
+    // Métodos redefinidos:
     @Override
     public String toString() {
         return "Producto: " + descripcion + "\n" +
@@ -35,22 +36,21 @@ public class Producto {
     }
 
     @Override
-    public boolean equals(Object objeto) {
-        if (objeto == null || getClass() != objeto.getClass())
-            return false;
-        if (this == objeto)
-            return true;
-        Producto otroProducto = (Producto) objeto;
-        // Comparo los códigos de los productos:
-        return this.codigo == otroProducto.codigo;
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(codigo);
     }
 
-    // Get/set de los atributos:
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        if (this == obj)
+            return true;
+        Producto otroProducto = (Producto) obj;
+        return this.codigo == otroProducto.codigo;
+    }
+
+    // Métodos get/set:
     // Codigo:
     public int verCodigo() {
         return codigo;

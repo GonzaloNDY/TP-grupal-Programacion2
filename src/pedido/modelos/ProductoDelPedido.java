@@ -4,7 +4,7 @@ import java.util.Objects;
 import productos.modelos.Producto;
 
 public class ProductoDelPedido {
-    // Atributos:
+    // Atributos de ProductoDelPedido:
     private int cantidad;
     private Producto producto;
 
@@ -13,25 +13,26 @@ public class ProductoDelPedido {
         this.cantidad = cantidad;
         this.producto = producto;
     }
-    
-    // Métodos:
-    @Override
-    public boolean equals(Object objeto) {
-        if (objeto == null || getClass() != objeto.getClass())
-            return false;
-        if (this == objeto)
-            return true;
-        ProductoDelPedido otropdp = (ProductoDelPedido) objeto;
-        // Comparo usando el método equals de Producto:
-        return this.producto.equals(otropdp.verProducto());
-    }
 
+    // Métodos:
+
+    // Métodos redefinidos:
     @Override
     public int hashCode() {
         return Objects.hash(producto);
     }
 
-    // Get/set de los atributos:
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        if (this == obj)
+            return true;
+        ProductoDelPedido otropdp = (ProductoDelPedido) obj;
+        return this.producto.equals(otropdp.verProducto());
+    }
+
+    // Métodos get/set:
     // Cantidad:
     public int verCantidad() {
         return cantidad;

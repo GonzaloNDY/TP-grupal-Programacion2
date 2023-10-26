@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import pedido.modelos.Pedido;
 
 public class Cliente extends Usuario {
-
-    // Atributos:
+    // Atributos de Cliente:
     private ArrayList<Pedido> pedidosCliente = new ArrayList<>();
 
-    // Constructores: 
+    // Constructores:
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
 
@@ -20,20 +19,19 @@ public class Cliente extends Usuario {
     }
 
     // Métodos:
-    public void agregarPedido(Pedido unPedido) {
-        int index = pedidosCliente.indexOf(unPedido);
-
-        if (index != -1) {
-            pedidosCliente.set(index, unPedido);    // Reemplazo el pedido si ya estaba en el arraylist
-        } else {
-            pedidosCliente.add(unPedido);
-        }
+    public void agregarPedido(Pedido nuevoPedido) {
+        int indiceExistente = pedidosCliente.indexOf(nuevoPedido);
+        if (indiceExistente != -1)
+            pedidosCliente.set(indiceExistente, nuevoPedido);
+        else
+            pedidosCliente.add(nuevoPedido);
     }
 
     public void cancelarPedido(Pedido unPedido) {
         pedidosCliente.remove(unPedido);
     }
 
+    // Métodos redefinidos:
     @Override
     public void mostrar() {
         System.out.println("Cliente: " + super.verApellido() + ", " + super.verNombre());
@@ -49,7 +47,6 @@ public class Cliente extends Usuario {
     public ArrayList<Pedido> getPedidosCliente() {
         return pedidosCliente;
     }
-
     public void setPedidosCliente(ArrayList<Pedido> pedidosCliente) {
         this.pedidosCliente = pedidosCliente;
     }

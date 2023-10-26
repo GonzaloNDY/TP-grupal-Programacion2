@@ -5,12 +5,12 @@ import java.util.Objects;
 import pedido.modelos.Pedido;
 
 public abstract class Usuario {
-
+    // Atributos de Usuario:
     private String apellido;
     private String nombre;
     private String clave;
     private String correo;
-    
+
     // Constructores:
     public Usuario(String correo, String clave,String apellido, String nombre ) {
         this.apellido = apellido;
@@ -22,6 +22,7 @@ public abstract class Usuario {
     // Métodos:
     public abstract ArrayList<Pedido> verPedidos();
 
+    //  Métodos redefinidos:
     @Override
     public int hashCode() {
         int hash = 7;
@@ -31,61 +32,46 @@ public abstract class Usuario {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if (obj == null || !(obj instanceof Usuario))
             return false;
-        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-          if (!(obj instanceof Usuario))
-          {
-               return false;
-          }
-           
-         Usuario other = (Usuario) obj;
+        if (this == obj)
+            return true;
+        Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
 
-  
     public void mostrar() {
         System.out.println("Usuario: " + apellido + ", " + nombre);
         System.out.println("Correo Electronico: " + correo);
     }
 
     // Métodos get/set:
+    // Apellido:
     public String verApellido() {
         return apellido;
     }
-
     public void asignarApellido(String apellido) {
         this.apellido = apellido;
     }
-
+    // Nombre:
     public String verNombre() {
         return nombre;
     }
-
     public void asignaNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    // Clave:
     public String verClave() {
         return clave;
     }
-
     public void asignaClave(String clave) {
         this.clave = clave;
     }
-
+    // Correo:
     public String verCorreo() {
         return correo;
     }
-
     public void asignaCorreo(String correo) {
         this.correo = correo;
     }
-
 }
