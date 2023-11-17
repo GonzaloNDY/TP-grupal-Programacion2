@@ -62,25 +62,21 @@ public class Pedido {
 
     // Métodos get/set:
     // Numero:
-    public int vertNumero() {
+    public int verNumero() {
         return numero;
     }
-    public void asginarNumero(int numero) {
+    public void asignarNumero(int numero) {
         this.numero = numero;
     }
-    // Fecha:
+    // Fecha y hora:
     public LocalDate verFecha() {
         return fechaYhora.toLocalDate();    // Obtiene solo la fecha
     }
-    public void asignarFecha(LocalDate fecha) {
-        fechaYhora = fechaYhora.toLocalTime().atDate(fecha);    // Asigna solo a la fecha
-    }
-    // Hora:
     public LocalTime verHora() {
         return fechaYhora.toLocalTime();    // Obtiene solo la hora
     }
-    public void asignarHora(LocalTime hora) {
-        fechaYhora = fechaYhora.toLocalDate().atTime(hora);    // Asigna solo a la hora
+    public void asignarFechaYHora(LocalDateTime fechaYhora) {
+        this.fechaYhora = fechaYhora;
     }
     // Cliente:
     public Usuario verCliente() {

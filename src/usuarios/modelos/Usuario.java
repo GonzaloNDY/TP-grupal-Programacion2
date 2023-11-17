@@ -22,6 +22,11 @@ public abstract class Usuario {
     // Métodos:
     public abstract ArrayList<Pedido> verPedidos();
 
+    public void mostrar() {
+        System.out.println("Usuario: " + apellido + ", " + nombre);
+        System.out.println("Correo: " + correo + "\n");
+    }
+
     //  Métodos redefinidos:
     @Override
     public int hashCode() {
@@ -38,11 +43,6 @@ public abstract class Usuario {
             return true;
         Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
-    }
-
-    public void mostrar() {
-        System.out.println("Usuario: " + apellido + ", " + nombre);
-        System.out.println("Correo Electronico: " + correo);
     }
 
     // Métodos get/set:

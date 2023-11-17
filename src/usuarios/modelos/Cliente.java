@@ -28,7 +28,9 @@ public class Cliente extends Usuario {
     }
 
     public void cancelarPedido(Pedido unPedido) {
-        pedidosCliente.remove(unPedido);
+        if (pedidosCliente.indexOf(unPedido) != -1) {
+            pedidosCliente.remove(unPedido);
+        }
     }
 
     // Métodos redefinidos:
