@@ -28,7 +28,6 @@ public class Pedido {
 
     public Pedido(int numero, LocalDateTime fechaYhora, ArrayList<ProductoDelPedido> productoDelPedido, Usuario cliente) {
         this(numero, fechaYhora, productoDelPedido, cliente, Estado.CREADO);
-
     }
 
     // Métodos:

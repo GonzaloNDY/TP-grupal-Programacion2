@@ -32,10 +32,7 @@ public class GestorUsuarios {
     // Métodos:
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         validarDatos(correo, apellido, nombre, perfil, clave, claveRepetida);
-        if (perfil == ) {
-            
-        }
-        Usuario nuevoUsuario = new Usuario(correo, apellido, nombre, perfil, clave, claveRepetida);
+        Usuario nuevoUsuario = generarUsuario(correo, apellido, nombre, perfil, clave, claveRepetida);
         if (existeEsteUsuario(nuevoUsuario))
             return USUARIOS_DUPLICADOS;
         usuarios.add(nuevoUsuario);
@@ -91,5 +88,21 @@ public class GestorUsuarios {
             return ERROR_CLAVES;
         }
         return VALIDACION_EXITO;
+    }
+    
+    private Usuario generarUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+        Usuario unUsuario = null;
+        switch (perfil) {
+            case CLIENTE:
+                unUsuario = new Cliente(correo, apellido, nombre, clave);
+                break;
+            case EMPLEADO:
+                unUsuario = new Empleado(correo, apellido, nombre, clave);
+                break;
+            case ENCARGADO:
+                unUsuario = new Encargado(correo, apellido, nombre, clave);
+                break;
+        }
+        return unUsuario;
     }
 }

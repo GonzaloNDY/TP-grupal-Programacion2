@@ -5,32 +5,99 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
+import java.time.LocalDateTime;
+import usuarios.modelos.Usuario;
 
 public class GestorPedidos {
-    private ArrayList<Pedido> pedidos;
+    // Constantes de GestorPedidos:
+    public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
+    public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
+    public static final String ERROR_HORA = "La hora del pedido es incorrecta";
+    public static final String ERROR_PRODUCTOS_DEL_PEDIDO = "El pedido no tiene productos";
+    public static final String ERROR_CLIENTE = "El pedido no tiene un cliente";
+    public static final String ERROR_ESTADO = "El pedido no tiene un estado";
+    public static final String ERROR_CANCELAR = "No se puede cancelar el pedido en este estado";
+    public static final String PEDIDOS_DUPLICADOS = "Ya existe un pedido con ese número";
+    public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
+    public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
     
-//    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
-//        return ;
-//    }
-//    public String cambiarEstado(Pedido pedidoAModificar) {
-//        return ;
-//    }
-//    public ArrayList<Pedido> verPedidos(){
-//        return ;
-//    }
-//    public boolean hayPedidosConEsteCliente(Cliente cliente) {
-//        return ;
-//    }
-//    public boolean hayPedidosConEsteProducto(Producto producto) {
-//        return ;
-//    }
-//    public boolean existeEstePedido(Pedido pedido) {
-//        return ;
-//    }
-//    public Pedido obtenerPedido(Integer numero) {
-//        return ;
-//    }
-//    // Métodos auxiliares:
-//        
+    // Atributos de GestorPedidos:
+    private ArrayList<Pedido> pedidos;
+    private static int contadorPedidos = 0;
+    
+    // Implementación del patrón de diseño singleton:
+    private static GestorPedidos gestor;
+    private GestorPedidos(){}
+    public static GestorPedidos instanciar(){
+        if (gestor == null)
+            gestor = new GestorPedidos();
+        return gestor;
+    }
+    
+    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+        validarDatos(fecha, hora, productosDelPedido, cliente);
+        Usuario unCliente = (Cliente)cliente;
+        LocalDateTime fechaYhora;
+        fechaYhora = fecha.atTime(hora);
+        Pedido nuevoPedido = new Pedido(++contadorPedidos, fechaYhora, productosDelPedido, unCliente);
+        if (existeEstePedido(nuevoPedido))
+            return PEDIDOS_DUPLICADOS;
+        pedidos.add(nuevoPedido);
+        return EXITO;
+    }
+    
+    public String cambiarEstado(Pedido pedidoAModificar) {
+        switch (pedidoAModificar.verEstado()) {
+            case CREADO:
+                pedidoAModificar.asignarEstado(Estado.SOLICITADO);
+                break;
+            case SOLICITADO:
+                pedidoAModificar.asignarEstado(Estado.CREADO);
+                break;
+            default:
+                return ERROR_ESTADO;
+        }
+        return null;
+}
+
+    public ArrayList<Pedido> verPedidos(){
+        return pedidos;
+    }
+    
+    public boolean hayPedidosConEsteProducto(Producto producto) {
+        for (Pedido pedido : pedidos) {
+            for (ProductoDelPedido pdp : pedido.verProductoDelPedido()) {
+                if (pdp.verProducto().equals(producto))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean existeEstePedido(Pedido pedido) {
+        return pedidos.contains(pedido);
+    }
+    
+    public Pedido obtenerPedido(Integer numero) {
+        for (Pedido pedido : pedidos) {
+            if (pedido.verNumero() == numero)
+                return pedido;
+        }
+        return null;
+    }
+
+    
+    // Métodos auxiliares:
+    private String validarDatos(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente){
+        if (fecha == null)
+            return ERROR_FECHA;
+        if (hora == null)
+            return ERROR_HORA;
+        if (productosDelPedido == null || productosDelPedido.isEmpty())
+            return ERROR_PRODUCTOS_DEL_PEDIDO;
+        if (cliente == null)
+            return ERROR_CLIENTE;
+        return VALIDACION_EXITO;
+    }
 
 }

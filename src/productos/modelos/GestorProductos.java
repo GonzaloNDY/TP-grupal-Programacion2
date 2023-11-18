@@ -72,7 +72,7 @@ public class GestorProductos {
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
         List<Producto> prodPorCategoria = new ArrayList<>();
         for (Producto prod : productos) {
-            if (prod.verCategoria() == categoria)
+            if (prod.verCategoria().equals(categoria))
                 prodPorCategoria.add(prod);
         }
         return prodPorCategoria;
@@ -80,7 +80,7 @@ public class GestorProductos {
 
     public Producto obtenerProducto(Integer codigo) {
         for (Producto producto : productos) {
-            if (producto.verCodigo() == codigo)
+            if (producto.equals(codigo))
                 return producto;
         }
         System.out.println("No existen productos con el código ingresado");
