@@ -31,18 +31,24 @@ public class GestorUsuarios {
 
     // Métodos:
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
-        validarDatos(correo, apellido, nombre, perfil, clave, claveRepetida);
-        Usuario nuevoUsuario = generarUsuario(correo, apellido, nombre, perfil, clave, claveRepetida);
-        if (existeEsteUsuario(nuevoUsuario))
-            return USUARIOS_DUPLICADOS;
-        usuarios.add(nuevoUsuario);
-        return EXITO;
+        String validacion = validarDatos(correo, apellido, nombre, perfil, clave, claveRepetida);
+        if (!validacion.equals(VALIDACION_EXITO))
+            return validacion;
+        else {
+            Usuario nuevoUsuario = generarUsuario(correo, apellido, nombre, perfil, clave);
+            if (existeEsteUsuario(nuevoUsuario))
+                return USUARIOS_DUPLICADOS;
+            else {
+                usuarios.add(nuevoUsuario);
+                return EXITO;
+            }
+        }
     }
-    
+
     public List<Usuario> verUsuarios() {
         return usuarios;
     }
-    
+
     public List<Usuario> buscarUsuarios(String apellido){
         List<Usuario> userEncontrados = new ArrayList<>();
         if (apellido != null) {
@@ -53,44 +59,38 @@ public class GestorUsuarios {
         }
         return userEncontrados;
     }
-    
+
     public boolean existeEsteUsuario(Usuario usuario) {
         return usuarios.contains(usuario);
     }
-    
+
     public Usuario obtenerUsuario(String correo) {
         for (Usuario user : usuarios) {
-            if (user.verCorreo() == correo)
+            if (user.verCorreo().equals(correo))
                 return user;
         }
         System.out.println("No existen usuarios con el correo ingresado");
         return null;
     }
-    
+
     // Métodos auxiliares:
     private String validarDatos(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
-        if (correo == null || correo.contains("@")) {
+        if (correo == null || !correo.contains("@"))
             return ERROR_CORREO;
-        }
-        if (apellido == null || apellido.isEmpty()) {
+        if (apellido == null || apellido.isEmpty())
             return ERROR_APELLIDO;
-        }
-        if (nombre == null || nombre.isEmpty()) {
+        if (nombre == null || nombre.isEmpty())
             return ERROR_NOMBRE;
-        }
-        if (perfil == null) {
+        if (perfil == null)
             return ERROR_PERFIL;
-        }
-        if (clave == null || clave.isEmpty()) {
+        if (clave == null || clave.isEmpty())
             return ERROR_CLAVES;
-        }
-        if (claveRepetida == null || claveRepetida.isEmpty()) {
+        if (claveRepetida == null || claveRepetida.isEmpty())
             return ERROR_CLAVES;
-        }
         return VALIDACION_EXITO;
     }
-    
-    private Usuario generarUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+
+    private Usuario generarUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave){
         Usuario unUsuario = null;
         switch (perfil) {
             case CLIENTE:

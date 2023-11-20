@@ -5,8 +5,9 @@ public enum Estado {
     CREADO("Creado"),
     SOLICITADO("Solicitado"),
     MODIFICADO("Modificado"),
+    PROCESANDO("Procesando"),
     ENTREGADO("Entregado");
-        
+
     private String valor;
 
     // Constructor para inicializar el valor del estado:
@@ -20,6 +21,4 @@ public enum Estado {
         return this.valor;
     }
     
-}   
-
-
+}

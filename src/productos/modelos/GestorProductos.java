@@ -14,10 +14,10 @@ public class GestorProductos {
     public static final String PRODUCTOS_DUPLICADOS = "Ya existe un producto con ese código";
     public static final String VALIDACION_EXITO = "Los datos del producto son correctos";
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
-    
+
     // Atributos de GestorProductos:
     private List<Producto> productos = new ArrayList<>();
-    
+
     // Implementación del patrón de diseño singleton:
     private static GestorProductos gestor;
     private GestorProductos(){}
@@ -26,15 +26,21 @@ public class GestorProductos {
             gestor = new GestorProductos();
         return gestor;
     }
-    
+
     // Métodos:
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
-        validarDatos(codigo, descripcion, precio, categoria, estado);
-        Producto nuevoProducto = new Producto(codigo, descripcion, precio, categoria, estado);
-        if (existeEsteProducto(nuevoProducto))
-            return PRODUCTOS_DUPLICADOS;
-        productos.add(nuevoProducto);
-        return EXITO;
+        String validacion = validarDatos(codigo, descripcion, precio, categoria, estado);
+        if (!validacion.equals(VALIDACION_EXITO))
+            return validacion;
+        else {
+            Producto nuevoProducto = new Producto(codigo, descripcion, precio, categoria, estado);
+            if (existeEsteProducto(nuevoProducto))
+                return PRODUCTOS_DUPLICADOS;
+            else {
+                productos.add(nuevoProducto);
+                return EXITO;
+            }
+        }
     }
 
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
@@ -46,7 +52,7 @@ public class GestorProductos {
             productoAModificar.asignarPrecio(precio);
             productoAModificar.asignarCategoria(categoria);
             productoAModificar.asignarEstado(estado);
-        } while (validarDatos(codigo, descripcion, precio, categoria, estado) != VALIDACION_EXITO);
+        } while (!validarDatos(codigo, descripcion, precio, categoria, estado).equals(VALIDACION_EXITO));
         return EXITO;
     }
 
@@ -80,7 +86,7 @@ public class GestorProductos {
 
     public Producto obtenerProducto(Integer codigo) {
         for (Producto producto : productos) {
-            if (producto.equals(codigo))
+            if (producto.verCodigo() == (codigo))
                 return producto;
         }
         System.out.println("No existen productos con el código ingresado");
