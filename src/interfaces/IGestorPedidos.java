@@ -9,7 +9,7 @@ import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
 public interface IGestorPedidos {
-
+    // Constantes:
     public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
     public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
     public static final String ERROR_HORA = "La hora del pedido es incorrecta";
@@ -21,6 +21,7 @@ public interface IGestorPedidos {
     public static final String PEDIDO_INEXISTENTE = "No existe el pedido especificado";
     public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
 
+    // Métodos:
     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
 
     public String cambiarEstado(Pedido pedidoAModificar);

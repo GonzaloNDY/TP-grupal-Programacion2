@@ -26,6 +26,7 @@ public class GestorPedidos implements IGestorPedidos {
         return gestor;
     }
 
+    // Implementación de métodos:
     @Override
     public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente) {
         String validacion = validarDatos(fecha, hora, productosDelPedido, cliente);
@@ -103,13 +104,14 @@ public class GestorPedidos implements IGestorPedidos {
 
     @Override
     public String cancelarPedido(Pedido pedido) {
-        if(pedidos.contains(pedido)){
-        pedidos.remove(pedido);
-            //tiene que llamar a al metodo dentro de cliente
-            // cancelarPedido(pedido);
-        return EXITO;
-        }else{
-        return "Error";
+        if (existeEstePedido(pedido)) {
+            // Asigno el cliente de [pedido] a una instancia de Cliente para poder usar sus métodos:
+            Cliente clienteDelPedido = (Cliente) pedido.verCliente(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
+            clienteDelPedido.cancelarPedido(pedido);
+            pedidos.remove(pedido);
+            return EXITO;
+        } else {
+            return ERROR_CANCELAR;
         }
     }
 

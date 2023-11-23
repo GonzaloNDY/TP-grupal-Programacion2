@@ -3,6 +3,7 @@ package usuarios.modelos;
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import java.util.List;
+import pedido.modelos.GestorPedidos;
 
 public class GestorUsuarios implements IGestorUsuarios {
 
@@ -22,7 +23,7 @@ public class GestorUsuarios implements IGestorUsuarios {
         return gestor;
     }
 
-    // Métodos:
+    // Implementación de métodos:
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         String validacion = validarDatos(correo, apellido, nombre, perfil, clave, claveRepetida);
@@ -73,21 +74,25 @@ public class GestorUsuarios implements IGestorUsuarios {
         return null;
     }
 
-    
     @Override
     public String borrarUsuario(Usuario usuario) {
-
-        if (usuarios.contains(usuario)) {
-            if (hayPedidosConEsteCliente(usuario)) {   //quiero llamar al metodo dentro de GestorPedidos
-                return "no se puede borrar";
+        if (!existeEsteUsuario(usuario)) {
+            return USUARIO_INEXISTENTE;
+        }
+        // Creo una instancia de GestorPedidos para poder usar sus métodos:
+        GestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
+        if (usuario instanceof Cliente) {
+            Cliente cliente = (Cliente) usuario;
+            if (pedidos.hayPedidosConEsteCliente(cliente)) {
+                return ERROR_PERMISOS;
             } else {
                 usuarios.remove(usuario);
                 return EXITO_BORRADO;
             }
         } else {
-            return USUARIO_INEXISTENTE;
+            usuarios.remove(usuario);
+            return EXITO_BORRADO;
         }
-
     }
 
     // Métodos auxiliares:
@@ -128,6 +133,4 @@ public class GestorUsuarios implements IGestorUsuarios {
         }
         return unUsuario;
     }
-
-
 }

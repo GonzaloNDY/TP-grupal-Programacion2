@@ -5,7 +5,7 @@ import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 
 public interface IGestorUsuarios {
-
+    // Constantes:
     public static final String EXITO = "Usuario creado/modificado con éxito";
     public static final String EXITO_BORRADO = "Usuario borrado con éxito";
     public static final String ERROR_CORREO = "El correo del usuario es incorrecto";
@@ -19,6 +19,7 @@ public interface IGestorUsuarios {
     public static final String USUARIO_INEXISTENTE = "No existe el usuario especificado";
     public static final String VALIDACION_EXITO = "Los datos del usuario son correctos";
 
+    // Métodos:
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
 
     public List<Usuario> verUsuarios();

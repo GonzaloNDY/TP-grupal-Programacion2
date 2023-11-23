@@ -6,7 +6,7 @@ import productos.modelos.Estado;
 import productos.modelos.Producto;
 
 public interface IGestorProductos {
-
+    // Constantes:
     public static final String EXITO = "Producto creado/modificado con éxito";
     public static final String ERROR_CODIGO = "El código del producto es incorrecto";
     public static final String ERROR_DESCRIPCION = "La descripción del producto es incorrecta";
@@ -18,9 +18,9 @@ public interface IGestorProductos {
     public static final String PRODUCTO_INEXISTENTE = "No existe el producto especificado";
     public static final String BORRAR_PRODUCTO = "Se borro el producto";
     public static final String PRODUCTO_IMBORRABLE = "No es posible borrar un producto contenido en un pedido";
-
-    public String crearProducto(int codigo, String descripcion, float precio,
-            Categoria categoria, Estado estado);
+    
+    // Métodos:
+    public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
 
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
 

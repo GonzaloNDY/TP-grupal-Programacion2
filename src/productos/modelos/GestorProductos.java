@@ -1,9 +1,9 @@
 package productos.modelos;
 
-import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
 import java.util.List;
+import pedido.modelos.GestorPedidos;
 
 public class GestorProductos implements IGestorProductos {
 
@@ -23,7 +23,7 @@ public class GestorProductos implements IGestorProductos {
         return gestor;
     }
 
-    // Métodos:
+    // Implementación de métodos:
     @Override
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado) {
         String validacion = validarDatos(codigo, descripcion, precio, categoria, estado);
@@ -99,21 +99,20 @@ public class GestorProductos implements IGestorProductos {
         System.out.println("No existen productos con el código ingresado");
         return null;
     }
-    
-//falta metodo hayPedidosConEsteProducto
+
     @Override
     public String borrarProducto(Producto producto) {
-        if (productos.contains(producto)) {
-            if (hayPedidosConEsteProducto(producto)) {     //quiero llamar al metodo dentro de GestorPedido
-                return PRODUCTO_IMBORRABLE;
-            } else {
-                productos.remove(producto);
-                return BORRAR_PRODUCTO;
-            }
-        } else {
+        if (!existeEsteProducto(producto)) {
             return PRODUCTO_INEXISTENTE;
         }
-
+        // Creo una instancia de GestorPedidos para poder usar sus métodos:
+        GestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
+        if (pedidos.hayPedidosConEsteProducto(producto)) {
+            return PRODUCTO_IMBORRABLE;
+        } else {
+            productos.remove(producto);
+            return BORRAR_PRODUCTO;
+        }
     }
 
     // Métodos auxiliares:
@@ -135,5 +134,4 @@ public class GestorProductos implements IGestorProductos {
         }
         return VALIDACION_EXITO;
     }
-
 }
