@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import productos.modelos.Producto;
 import usuarios.modelos.Usuario;
@@ -14,11 +15,11 @@ public class Pedido {
     private LocalDateTime fechaYhora;
     private Usuario cliente;
     private Estado estado;
-    private ArrayList<ProductoDelPedido> productoDelPedido;
+    private List<ProductoDelPedido> productoDelPedido;
     private Producto producto;
 
     // Constructores:
-    public Pedido(int numero, LocalDateTime fechaYhora, ArrayList<ProductoDelPedido> productoDelPedido, Usuario cliente, Estado estado) {
+    public Pedido(int numero, LocalDateTime fechaYhora, List<ProductoDelPedido> productoDelPedido, Usuario cliente, Estado estado) {
         this.numero = numero;
         this.fechaYhora = fechaYhora;
         this.cliente = cliente;
@@ -26,7 +27,7 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public Pedido(int numero, LocalDateTime fechaYhora, ArrayList<ProductoDelPedido> productoDelPedido, Usuario cliente) {
+    public Pedido(int numero, LocalDateTime fechaYhora, List<ProductoDelPedido> productoDelPedido, Usuario cliente) {
         this(numero, fechaYhora, productoDelPedido, cliente, Estado.CREADO);
     }
 
@@ -92,7 +93,7 @@ public class Pedido {
         this.estado = estado;
     }
     // ProductoDelPedido:
-    public ArrayList<ProductoDelPedido> verProductoDelPedido() {
+    public List<ProductoDelPedido> verProductoDelPedido() {
         return productoDelPedido;
     }
     public void asignarProductoDelPedido(ArrayList<ProductoDelPedido> productoDelPedido) {

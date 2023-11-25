@@ -19,7 +19,7 @@ public interface IGestorProductos {
     public static final String BORRAR_PRODUCTO = "Se borro el producto";
     public static final String PRODUCTO_IMBORRABLE = "No es posible borrar un producto contenido en un pedido";
     
-    // Métodos:
+    // Métodos:   
     public String crearProducto(int codigo, String descripcion, float precio, Categoria categoria, Estado estado);
 
     public String modificarProducto(Producto productoAModificar, int codigo, String descripcion, float precio, Categoria categoria, Estado estado);

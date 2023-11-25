@@ -1,11 +1,13 @@
 package productos.modelos;
 
+import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import pedido.modelos.GestorPedidos;
 
-public class GestorProductos implements IGestorProductos {
+public class GestorProductos implements IGestorProductos, Comparator<Producto> {
 
     // Atributos de GestorProductos:
     private List<Producto> productos = new ArrayList<>();
@@ -57,7 +59,18 @@ public class GestorProductos implements IGestorProductos {
 
     @Override
     public List<Producto> menu() {
-        return productos;
+        List<Producto> copiaproductos = new ArrayList<>(productos);
+
+        Comparator<Producto> pComp = (Producto p1, Producto p2) -> {
+            int resultado = p1.verCategoria().compareTo(p2.verCategoria());
+            if (resultado == 0) {
+                return p1.verDescripcion().compareTo(p2.verDescripcion());
+            }
+            return resultado;
+        };
+
+        copiaproductos.sort(pComp);
+        return copiaproductos;
     }
 
     @Override
@@ -68,6 +81,16 @@ public class GestorProductos implements IGestorProductos {
                 if (prod.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
                     prodEncontrados.add(prod);
                 }
+            }
+            if (!prodEncontrados.isEmpty()) {
+               Comparator<Producto> pComp = (Producto p1, Producto p2)  -> {
+                    int resultado = p1.verCategoria().compareTo(p2.verCategoria());
+                    if (resultado == 0) {
+                        return p1.verDescripcion().compareTo(p2.verDescripcion());
+                    }
+                    return resultado;
+                };
+               prodEncontrados.sort(pComp);
             }
         }
         return prodEncontrados;
@@ -86,7 +109,13 @@ public class GestorProductos implements IGestorProductos {
                 prodPorCategoria.add(prod);
             }
         }
-        return prodPorCategoria;
+        if (!prodPorCategoria.isEmpty()) {
+            Comparator<Producto> pComp = (Producto p1, Producto p2) -> p1.verDescripcion().toLowerCase().compareTo(p2.verDescripcion().toLowerCase());
+            prodPorCategoria.sort(pComp);
+            return prodPorCategoria;
+        } else {
+            return prodPorCategoria;
+        }
     }
 
     @Override
@@ -106,7 +135,7 @@ public class GestorProductos implements IGestorProductos {
             return PRODUCTO_INEXISTENTE;
         }
         // Creo una instancia de GestorPedidos para poder usar sus métodos:
-        GestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
+        IGestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
         if (pedidos.hayPedidosConEsteProducto(producto)) {
             return PRODUCTO_IMBORRABLE;
         } else {
@@ -133,5 +162,10 @@ public class GestorProductos implements IGestorProductos {
             return ERROR_ESTADO;
         }
         return VALIDACION_EXITO;
+    }
+
+    @Override
+    public int compare(Producto o1, Producto o2) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

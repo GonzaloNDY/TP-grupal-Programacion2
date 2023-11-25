@@ -3,12 +3,14 @@ package interfaces;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 import pedido.modelos.Pedido;
 import pedido.modelos.ProductoDelPedido;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 
 public interface IGestorPedidos {
+
     // Constantes:
     public static final String EXITO = "Pedido creado/modificado/cancelado con éxito";
     public static final String ERROR_FECHA = "La fecha del pedido es incorrecta";
@@ -22,11 +24,11 @@ public interface IGestorPedidos {
     public static final String VALIDACION_EXITO = "El pedido tiene los datos correctos";
 
     // Métodos:
-    public String crearPedido(LocalDate fecha, LocalTime hora, ArrayList<ProductoDelPedido> productosDelPedido, Cliente cliente);
+    public String crearPedido(LocalDate fecha, LocalTime hora, List<ProductoDelPedido>productosDelPedido, Cliente cliente);
+
+    public List<Pedido> verPedidos();
 
     public String cambiarEstado(Pedido pedidoAModificar);
-
-    public ArrayList<Pedido> verPedidos();
 
     public boolean hayPedidosConEsteCliente(Cliente cliente);
 

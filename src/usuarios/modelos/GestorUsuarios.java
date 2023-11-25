@@ -1,7 +1,9 @@
 package usuarios.modelos;
 
+import interfaces.IGestorPedidos;
 import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import pedido.modelos.GestorPedidos;
 
@@ -42,7 +44,17 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     @Override
     public List<Usuario> verUsuarios() {
-        return usuarios;
+        List<Usuario> todosLosUsuarios = new ArrayList<>(usuarios);
+        Comparator<Usuario> uComp = (u1, u2) -> {
+            int resultado = u1.verApellido().toLowerCase().compareTo(u2.verApellido().toLowerCase());
+            if (resultado == 0) {
+                resultado = u1.verNombre().toLowerCase().compareTo(u2.verNombre().toLowerCase());
+            }
+            return resultado;
+        };
+        todosLosUsuarios.sort(uComp);
+
+        return todosLosUsuarios;
     }
 
     @Override
@@ -54,6 +66,15 @@ public class GestorUsuarios implements IGestorUsuarios {
                     userEncontrados.add(user);
                 }
             }
+            Comparator<Usuario> uComp = (u1, u2) -> {
+                int resultado = u1.verApellido().toLowerCase().compareTo(u2.verApellido().toLowerCase());
+                if (resultado == 0) {
+                    resultado = u1.verNombre().toLowerCase().compareTo(u2.verNombre().toLowerCase());
+                }
+                return resultado;
+            };
+            userEncontrados.sort(uComp);
+
         }
         return userEncontrados;
     }
@@ -80,7 +101,7 @@ public class GestorUsuarios implements IGestorUsuarios {
             return USUARIO_INEXISTENTE;
         }
         // Creo una instancia de GestorPedidos para poder usar sus métodos:
-        GestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
+        IGestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
         if (usuario instanceof Cliente) {
             Cliente cliente = (Cliente) usuario;
             if (pedidos.hayPedidosConEsteCliente(cliente)) {
