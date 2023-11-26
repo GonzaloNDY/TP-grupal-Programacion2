@@ -1,6 +1,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import pedido.modelos.Pedido;
 
@@ -20,7 +21,7 @@ public abstract class Usuario {
     }
 
     // Métodos:
-    public abstract ArrayList<Pedido> verPedidos();
+    public abstract List<Pedido> verPedidos();
 
     public void mostrar() {
         System.out.println("Usuario: " + apellido + ", " + nombre);
@@ -41,7 +42,7 @@ public abstract class Usuario {
             return false;
         if (this == obj)
             return true;
-        Usuario other = (Usuario) obj;
+        final Usuario other = (Usuario) obj;
         return Objects.equals(this.correo, other.correo);
     }
 

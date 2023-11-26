@@ -3,21 +3,23 @@ package pedido.modelos;
 import interfaces.IGestorPedidos;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import productos.modelos.Producto;
 import usuarios.modelos.Cliente;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class GestorPedidos implements IGestorPedidos {
 
     // Atributos de GestorPedidos:
-    private ArrayList<Pedido> pedidos;
+    private List<Pedido> pedidos;
 
     // Implementación del patrón de diseño singleton:
     private static GestorPedidos gestor;
 
     private GestorPedidos() {
+        this.pedidos = new ArrayList<>();
     }
 
     public static GestorPedidos instanciar() {
@@ -34,13 +36,13 @@ public class GestorPedidos implements IGestorPedidos {
         if (!validacion.equals(VALIDACION_EXITO)) {
             return validacion;
         } else {
-            LocalDateTime fechaYhora;
-            fechaYhora = fecha.atTime(hora);
-            Pedido nuevoPedido = new Pedido(pedidos.size() + 1, fechaYhora, productosDelPedido, cliente);
+            LocalDateTime fechaYhora = LocalDateTime.of(fecha, hora);
+            Pedido nuevoPedido = new Pedido((pedidos.size() + 1), fechaYhora, productosDelPedido, cliente);
             if (existeEstePedido(nuevoPedido)) {
                 return PEDIDOS_DUPLICADOS;
             } else {
                 pedidos.add(nuevoPedido);
+                cliente.agregarPedido(nuevoPedido);
                 return EXITO;
             }
         }
@@ -62,7 +64,11 @@ public class GestorPedidos implements IGestorPedidos {
     }
 
     @Override
-    public ArrayList<Pedido> verPedidos() {
+    public List<Pedido> verPedidos() {
+        Comparator<Pedido> pComp = (p1, p2) -> p1.verNumero() - p2.verNumero();
+        pedidos.sort(pComp);
+        // Utilizando el método estático Comparator.comparingInt para especificar una función de extracción de clave (Pedido::verNumero):
+//        pedidos.sort(Comparator.comparingInt(Pedido::verNumero));
         return pedidos;
     }
 
@@ -76,6 +82,8 @@ public class GestorPedidos implements IGestorPedidos {
             }
         }
         return false;
+        // Utilizar el método anyMatch de Stream para simplificar la lógica:
+//        return pedidos.stream().anyMatch(pedido -> pedido.tieneProducto(producto));
     }
 
     @Override
@@ -86,8 +94,10 @@ public class GestorPedidos implements IGestorPedidos {
             }
         }
         return false;
+        // Utilizando el método anyMatch de Stream para simplificar la lógica:
+//        return pedidos.stream().anyMatch(pedido -> pedido.verCliente().equals(cliente));
     }
-
+    
     @Override
     public boolean existeEstePedido(Pedido pedido) {
         return pedidos.contains(pedido);
@@ -101,13 +111,14 @@ public class GestorPedidos implements IGestorPedidos {
             }
         }
         return null;
+        // Utilizando el método findFirst de Stream para obtener el primer pedido con el número dado:
+//        return pedidos.stream().filter(pedido -> pedido.verNumero().equals(numero)).findFirst().orElse(null);
     }
 
     @Override
     public String cancelarPedido(Pedido pedido) {
         if (existeEstePedido(pedido)) {
-            // Asigno el cliente de [pedido] a una instancia de Cliente para poder usar sus métodos:
-            Cliente clienteDelPedido = (Cliente) pedido.verCliente(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
+            Cliente clienteDelPedido = (Cliente) pedido.verCliente();
             clienteDelPedido.cancelarPedido(pedido);
             pedidos.remove(pedido);
             return EXITO;

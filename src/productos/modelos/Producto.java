@@ -46,8 +46,8 @@ public class Producto {
             return false;
         if (this == obj)
             return true;
-        Producto otroProducto = (Producto) obj;
-        return this.codigo == otroProducto.codigo;
+        final Producto otroProducto = (Producto) obj;
+        return (this.codigo == otroProducto.codigo);
     }
 
     // Métodos get/set:

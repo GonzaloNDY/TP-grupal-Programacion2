@@ -16,6 +16,7 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
     private static GestorProductos gestor;
 
     private GestorProductos() {
+        this.productos = new ArrayList<>();
     }
 
     public static GestorProductos instanciar() {
@@ -134,8 +135,7 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
         if (!existeEsteProducto(producto)) {
             return PRODUCTO_INEXISTENTE;
         }
-        // Creo una instancia de GestorPedidos para poder usar sus métodos:
-        IGestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
+        IGestorPedidos pedidos = GestorPedidos.instanciar();
         if (pedidos.hayPedidosConEsteProducto(producto)) {
             return PRODUCTO_IMBORRABLE;
         } else {

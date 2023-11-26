@@ -56,8 +56,8 @@ public class Pedido {
             return false;
         if (this == objeto)
             return true;
-        Pedido otroPedido = (Pedido) objeto;
-        return this.numero == otroPedido.numero;
+        final Pedido otroPedido = (Pedido) objeto;
+        return (this.numero == otroPedido.numero);
     }
 
     // Métodos get/set:
@@ -96,7 +96,7 @@ public class Pedido {
     public List<ProductoDelPedido> verProductoDelPedido() {
         return productoDelPedido;
     }
-    public void asignarProductoDelPedido(ArrayList<ProductoDelPedido> productoDelPedido) {
+    public void asignarProductoDelPedido(List<ProductoDelPedido> productoDelPedido) {
         this.productoDelPedido = productoDelPedido;
     }
     // Producto:

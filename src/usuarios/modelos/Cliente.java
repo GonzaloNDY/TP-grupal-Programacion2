@@ -1,6 +1,7 @@
 package usuarios.modelos;
 
 import java.util.ArrayList;
+import java.util.List;
 import pedido.modelos.Pedido;
 
 public class Cliente extends Usuario {
@@ -10,7 +11,6 @@ public class Cliente extends Usuario {
     // Constructores:
     public Cliente(String correo, String clave, String apellido, String nombre) {
         super(correo, clave, apellido, nombre);
-
     }
 
     public Cliente(String correo, String clave, String apellido, String nombre, ArrayList<Pedido> pedidosCliente) {
@@ -41,7 +41,7 @@ public class Cliente extends Usuario {
     }
 
     @Override
-    public ArrayList<Pedido> verPedidos() {
+    public List<Pedido> verPedidos() {
         return pedidosCliente;
     }
 

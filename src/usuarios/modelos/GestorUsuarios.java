@@ -16,6 +16,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     private static GestorUsuarios gestor;
 
     private GestorUsuarios() {
+        this.usuarios = new ArrayList<>();
     }
 
     public static GestorUsuarios instanciar() {
@@ -91,7 +92,6 @@ public class GestorUsuarios implements IGestorUsuarios {
                 return user;
             }
         }
-        System.out.println("No existen usuarios con el correo ingresado");
         return null;
     }
 
@@ -100,16 +100,9 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (!existeEsteUsuario(usuario)) {
             return USUARIO_INEXISTENTE;
         }
-        // Creo una instancia de GestorPedidos para poder usar sus métodos:
-        IGestorPedidos pedidos = GestorPedidos.instanciar(); // Cuando el método finalice, esta instancia local se eliminará automáticamente
-        if (usuario instanceof Cliente) {
-            Cliente cliente = (Cliente) usuario;
-            if (pedidos.hayPedidosConEsteCliente(cliente)) {
-                return ERROR_PERMISOS;
-            } else {
-                usuarios.remove(usuario);
-                return EXITO_BORRADO;
-            }
+        IGestorPedidos pedidos = GestorPedidos.instanciar();
+        if (pedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
+            return ERROR_PERMISOS;
         } else {
             usuarios.remove(usuario);
             return EXITO_BORRADO;
