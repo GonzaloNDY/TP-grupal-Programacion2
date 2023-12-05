@@ -142,6 +142,11 @@ public class VentanaAMProducto extends JDialog {
         jLabel3.setText("Categoría");
 
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCategoriaActionPerformed(evt);
+            }
+        });
 
         comboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -216,7 +221,7 @@ public class VentanaAMProducto extends JDialog {
         float precio = Float.parseFloat(this.txtPrecio.getText().trim());
         Categoria categoria = ((ModeloComboCategorias)this.comboCategoria.getModel()).obtenerCategoria();
         Estado estado = ((ModeloComboEstados)this.comboEstado.getModel()).obtenerEstado();
-        Producto unProducto = new Producto(codigo, descripcion, precio, categoria, estado);
+        Producto unProducto = new Producto(codigo, descripcion, categoria, estado, precio);
         if (!this.productos.contains(unProducto))
             this.productos.add(unProducto);
         
@@ -227,6 +232,10 @@ public class VentanaAMProducto extends JDialog {
             System.out.println();
         }
     }//GEN-LAST:event_btnGuardarClic
+
+    private void comboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCategoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -33,7 +33,7 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
         if (!validacion.equals(VALIDACION_EXITO)) {
             return validacion;
         } else {
-            Producto nuevoProducto = new Producto(codigo, descripcion, precio, categoria, estado);
+            Producto nuevoProducto = new Producto(codigo, descripcion, categoria, estado, precio);
             if (existeEsteProducto(nuevoProducto)) {
                 return PRODUCTOS_DUPLICADOS;
             } else {
