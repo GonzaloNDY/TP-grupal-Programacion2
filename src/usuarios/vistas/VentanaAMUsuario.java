@@ -11,15 +11,19 @@ import usuarios.modelos.Perfil;
 
 public class VentanaAMUsuario extends javax.swing.JDialog {
 
-    /**
-     * Creates new form VentanaAMUsuario
-     *
-     * @param ventanaPadre
-     */
+    public VentanaAMUsuario() {
+        super((Dialog)null, true);
+        initComponents();
+    }
+
+
     public VentanaAMUsuario(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
+         setVisible(true); // Hace visible la ventana
+         setLocationRelativeTo(null); 
     }
+
 
     public void llenarComboPerfil() {
         for (Perfil perf : Perfil.values()) {
