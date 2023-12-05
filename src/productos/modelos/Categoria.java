@@ -3,7 +3,7 @@ package productos.modelos;
 public enum Categoria {
     // Categorias disponibles:
     ENTRADA("Entrada"),
-    PLATOPRINCIPAL("Plato principal"),
+    PLATO_PRINCIPAL("Plato_principal"),
     POSTRE("Postre");
 
     private String valor;

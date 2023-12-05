@@ -18,6 +18,14 @@ public class Producto {
         this.estado = estado;
         this.precio = precio;
     }
+    
+    public Producto (int codigo, String descripcion, Categoria categoria, Estado estado, float precio){
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.estado = estado;
+        this.precio = precio;
+    }
 
     // Métodos:
     public void mostrar() {
