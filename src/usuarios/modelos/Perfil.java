@@ -13,6 +13,14 @@ public enum Perfil {
         this.valor = valor;
     }
 
+    public String verPerfil() {
+        return valor;
+    }
+
+    public void asignarPerfil(String valor) {
+        this.valor = valor;
+    }
+
     // Devuelve un valor legible de perfil:
     @Override
     public String toString() {

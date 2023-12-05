@@ -18,6 +18,7 @@ public class Producto {
         this.estado = estado;
         this.precio = precio;
     }
+    
 
     // Métodos:
     public void mostrar() {

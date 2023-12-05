@@ -2,21 +2,27 @@ package productos.modelos;
 
 import interfaces.IGestorPedidos;
 import interfaces.IGestorProductos;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import pedido.modelos.GestorPedidos;
 
-public class GestorProductos implements IGestorProductos, Comparator<Producto> {
+public class GestorProductos implements IGestorProductos{
 
     // Atributos de GestorProductos:
-    private List<Producto> productos = new ArrayList<>();
+    private List<Producto> listaProductos = new ArrayList<>();
 
     // Implementación del patrón de diseño singleton:
     private static GestorProductos gestor;
 
     private GestorProductos() {
-        this.productos = new ArrayList<>();
+        this.leerArchivo();
     }
 
     public static GestorProductos instanciar() {
@@ -37,7 +43,8 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
             if (existeEsteProducto(nuevoProducto)) {
                 return PRODUCTOS_DUPLICADOS;
             } else {
-                productos.add(nuevoProducto);
+                listaProductos.add(nuevoProducto);
+                escribirArchivo();
                 return EXITO;
             }
         }
@@ -48,19 +55,26 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
         if (!existeEsteProducto(productoAModificar)) {
             return PRODUCTO_INEXISTENTE;
         }
-        do {
+        String validacion = validarDatos(codigo, descripcion, precio, categoria, estado);
+        if (!validacion.equals(VALIDACION_EXITO)) {
+            return validacion;
+        }
+        if (obtenerProducto(codigo) != null) {
+            return PRODUCTOS_DUPLICADOS;
+        } else {
             productoAModificar.asignarCodigo(codigo);
             productoAModificar.asignarDescripcion(descripcion);
             productoAModificar.asignarPrecio(precio);
             productoAModificar.asignarCategoria(categoria);
-            productoAModificar.asignarEstado(estado);
-        } while (!validarDatos(codigo, descripcion, precio, categoria, estado).equals(VALIDACION_EXITO));
-        return EXITO;
+            productoAModificar.asignarEstado(estado); 
+            escribirArchivo();
+            return EXITO;
+        }
     }
 
     @Override
     public List<Producto> menu() {
-        List<Producto> copiaproductos = new ArrayList<>(productos);
+        List<Producto> copiaproductos = new ArrayList<>(listaProductos);
 
         Comparator<Producto> pComp = (Producto p1, Producto p2) -> {
             int resultado = p1.verCategoria().compareTo(p2.verCategoria());
@@ -78,7 +92,7 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
     public List<Producto> buscarProductos(String descripcion) {
         List<Producto> prodEncontrados = new ArrayList<>();
         if (descripcion != null) {
-            for (Producto prod : this.productos) {
+            for (Producto prod : this.listaProductos) {
                 if (prod.verDescripcion().toLowerCase().contains(descripcion.toLowerCase())) {
                     prodEncontrados.add(prod);
                 }
@@ -99,13 +113,13 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
 
     @Override
     public boolean existeEsteProducto(Producto producto) {
-        return productos.contains(producto);
+        return listaProductos.contains(producto);
     }
 
     @Override
     public List<Producto> verProductosPorCategoria(Categoria categoria) {
         List<Producto> prodPorCategoria = new ArrayList<>();
-        for (Producto prod : productos) {
+        for (Producto prod : listaProductos) {
             if (prod.verCategoria().equals(categoria)) {
                 prodPorCategoria.add(prod);
             }
@@ -121,7 +135,7 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
 
     @Override
     public Producto obtenerProducto(Integer codigo) {
-        for (Producto producto : productos) {
+        for (Producto producto : listaProductos) {
             if (producto.verCodigo() == (codigo)) {
                 return producto;
             }
@@ -139,7 +153,8 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
         if (pedidos.hayPedidosConEsteProducto(producto)) {
             return PRODUCTO_IMBORRABLE;
         } else {
-            productos.remove(producto);
+            listaProductos.remove(producto);
+//            escribirArchivo();
             return BORRAR_PRODUCTO;
         }
     }
@@ -164,8 +179,81 @@ public class GestorProductos implements IGestorProductos, Comparator<Producto> {
         return VALIDACION_EXITO;
     }
 
-    @Override
-    public int compare(Producto o1, Producto o2) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private void escribirArchivo() {
+        File f = new File("productos");
+        BufferedWriter bw = null;
+        // Inicio del bloque try/catch/finally
+        try {
+            FileWriter fw = new FileWriter(f, false);
+            bw = new BufferedWriter(fw);
+            for (Producto p : this.listaProductos) {
+                String linea;
+                linea = Integer.toString(p.verCodigo()) + ",";
+                linea += p.verDescripcion() + ",";
+                linea += Float.toString(p.verPrecio()) + ",";
+                linea += p.verCategoria() + ",";
+                linea += p.verEstado() + ",";
+                bw.write(linea);
+                bw.newLine();
+            }
+            bw.flush();
+            fw.close();
+            bw.close();
+        }
+        catch (IOException ioe) {
+            System.out.println("Problemas en la lectura del archivo");
+            ioe.printStackTrace();
+        }
+        finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                }
+                catch (IOException ioe) {
+                    System.out.println("Problemas en la creacion del archivo");
+                    ioe.printStackTrace();
+                }
+            }            
+        }
+        // Fin del bloque try/catch/finally
+    }
+
+    private void leerArchivo() {
+        File f = new File("productos");
+        if (f.exists()) {
+            BufferedReader br = null;
+            // Inicio del bloque try/catch/finally
+            try {
+                FileReader fr = new FileReader(f);
+                br = new BufferedReader(fr);
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    String[] vector = linea.split(",");
+                    int codigo = Integer.parseInt(vector[0]);
+                    String descripcion = vector[1];
+                    float precio = Float.parseFloat(vector[2]);
+                    Categoria categoria = Categoria.valueOf(vector[3].toUpperCase());
+                    Estado estado = Estado.valueOf(vector[4].toUpperCase());
+                    Producto prod = new Producto(codigo, descripcion, categoria, estado, precio);
+                    this.listaProductos.add(prod);
+                }
+            }
+            catch (IOException ioe) {
+                System.out.println("Problemas en la lectura del archivo");
+                ioe.printStackTrace();
+            }
+            finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    }
+                    catch (IOException ioe) {
+                        System.out.println("Problemas en la lectura del archivo");
+                        ioe.printStackTrace();
+                    }
+                }
+            }
+            // Fin del bloque try/catch/finally
+        }
     }
 }
