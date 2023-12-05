@@ -67,8 +67,6 @@ public class GestorPedidos implements IGestorPedidos {
     public List<Pedido> verPedidos() {
         Comparator<Pedido> pComp = (p1, p2) -> p1.verNumero() - p2.verNumero();
         pedidos.sort(pComp);
-        // Utilizando el método estático Comparator.comparingInt para especificar una función de extracción de clave (Pedido::verNumero):
-//        pedidos.sort(Comparator.comparingInt(Pedido::verNumero));
         return pedidos;
     }
 
@@ -82,8 +80,6 @@ public class GestorPedidos implements IGestorPedidos {
             }
         }
         return false;
-        // Utilizar el método anyMatch de Stream para simplificar la lógica:
-//        return pedidos.stream().anyMatch(pedido -> pedido.tieneProducto(producto));
     }
 
     @Override
@@ -94,8 +90,6 @@ public class GestorPedidos implements IGestorPedidos {
             }
         }
         return false;
-        // Utilizando el método anyMatch de Stream para simplificar la lógica:
-//        return pedidos.stream().anyMatch(pedido -> pedido.verCliente().equals(cliente));
     }
     
     @Override
@@ -111,8 +105,6 @@ public class GestorPedidos implements IGestorPedidos {
             }
         }
         return null;
-        // Utilizando el método findFirst de Stream para obtener el primer pedido con el número dado:
-//        return pedidos.stream().filter(pedido -> pedido.verNumero().equals(numero)).findFirst().orElse(null);
     }
 
     @Override
