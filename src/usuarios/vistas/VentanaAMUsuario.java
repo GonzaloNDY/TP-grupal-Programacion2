@@ -192,10 +192,13 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
             }
         }
         System.out.println();
-        System.out.println(gu.crearUsuario(correo, apellido, nombre, perfilSeleccionado, clave, claveRepetida));
+        String validacion = (gu.crearUsuario(correo, apellido, nombre, perfilSeleccionado, clave, claveRepetida));
+        System.out.println(validacion);
         System.out.println();
-
-        resetearCamposRegistro();
+        if(validacion.equals("Usuario creado/modificado con éxito")){
+           resetearCamposRegistro();
+        }
+     
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
