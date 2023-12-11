@@ -14,14 +14,15 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public VentanaAMUsuario() {
         super((Dialog)null, true);
         initComponents();
+        setLocationRelativeTo(null); 
     }
 
 
     public VentanaAMUsuario(Dialog ventanaPadre) {
         super(ventanaPadre, true);
         initComponents();
-         setVisible(true); // Hace visible la ventana
-         setLocationRelativeTo(null); 
+        setVisible(true); // Hace visible la ventana
+        setLocationRelativeTo(null); 
     }
 
 
@@ -170,6 +171,8 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
+
+        jPanel1.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
