@@ -154,7 +154,7 @@ public class GestorProductos implements IGestorProductos{
             return PRODUCTO_IMBORRABLE;
         } else {
             listaProductos.remove(producto);
-//            escribirArchivo();
+           escribirArchivo();
             return BORRAR_PRODUCTO;
         }
     }

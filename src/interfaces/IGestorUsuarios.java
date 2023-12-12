@@ -31,4 +31,7 @@ public interface IGestorUsuarios {
     public boolean existeEsteUsuario(Usuario usuario);
 
     public Usuario obtenerUsuario(String correo);
+    
+    public String obtenerPerfilUsuario(Usuario unUsuario);
+
 }

@@ -2,6 +2,12 @@ package usuarios.modelos;
 
 import interfaces.IGestorPedidos;
 import interfaces.IGestorUsuarios;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,7 +22,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     private static GestorUsuarios gestor;
 
     private GestorUsuarios() {
-        this.usuarios = new ArrayList<>();
+        this.leerArchivo();
     }
 
     public static GestorUsuarios instanciar() {
@@ -38,6 +44,7 @@ public class GestorUsuarios implements IGestorUsuarios {
                 return USUARIOS_DUPLICADOS;
             } else {
                 usuarios.add(nuevoUsuario);
+                this.escribirArchivo();
                 return EXITO;
             }
         }
@@ -100,13 +107,19 @@ public class GestorUsuarios implements IGestorUsuarios {
         if (!existeEsteUsuario(usuario)) {
             return USUARIO_INEXISTENTE;
         }
+
         IGestorPedidos pedidos = GestorPedidos.instanciar();
-        if (pedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
-            return ERROR_PERMISOS;
-        } else {
-            usuarios.remove(usuario);
-            return EXITO_BORRADO;
+
+        // Verificar si el usuario es una instancia de Cliente
+        if (usuario instanceof Cliente) {
+            if (pedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
+                return ERROR_PERMISOS;
+            }
         }
+
+        // Remover el usuario si no hay pedidos asociados o si el usuario no es un Cliente
+        usuarios.remove(usuario);
+        return EXITO_BORRADO;
     }
 
     // Métodos auxiliares:
@@ -146,5 +159,87 @@ public class GestorUsuarios implements IGestorUsuarios {
                 break;
         }
         return unUsuario;
+    }
+
+    public void escribirArchivo() {
+        leerArchivo();                      // se puede poner en otra parte
+        File f = new File("usuarios");
+        BufferedWriter bw = null;
+        try {
+            FileWriter fw = new FileWriter(f, false);
+            bw = new BufferedWriter(fw);
+            for (Usuario u : usuarios) {
+                String linea;
+                linea = u.verCorreo() + ",";
+                linea += u.verApellido() + ",";
+                linea += u.verNombre() + ",";
+                linea += u.verClave() + ",";
+                linea += obtenerPerfilUsuario(u) + ",";
+                bw.write(linea);
+                bw.newLine();
+            }
+            bw.flush();
+            fw.close();
+            bw.close();
+        } catch (IOException ioe) {
+            System.out.println("Problemas en la lectura del archivo");
+            ioe.printStackTrace();
+        } finally {
+            if (bw != null) {
+                try {
+                    bw.close();
+                } catch (IOException ioe) {
+                    System.out.println("Problemas en la creacion del archivo");
+                    ioe.printStackTrace();
+                }
+            }
+        }
+        // Fin del bloque try/catch/finally
+    }
+
+    private void leerArchivo() {
+        File f = new File("usuarios");  // cambiar por caden constante
+        if (f.exists()) {
+            BufferedReader br = null;
+            // Inicio del bloque try/catch/finally
+            try {
+                FileReader fr = new FileReader(f);
+                br = new BufferedReader(fr);
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    String[] vector = linea.split(",");
+                    String correo = vector[0];
+                    String apellido = vector[1];
+                    String nombre = vector[2];
+                    String clave = vector[3];
+                    Perfil perfil = Perfil.valueOf(vector[4].toUpperCase());
+                    crearUsuario(correo, apellido, nombre, perfil, clave, clave);
+
+                }
+            } catch (IOException ioe) {
+                System.out.println("Problemas en la lectura del archivo");
+                ioe.printStackTrace();
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException ioe) {
+                        System.out.println("Problemas en la lectura del archivo");
+                        ioe.printStackTrace();
+                    }
+                }
+            }
+            // Fin del bloque try/catch/finally
+        }
+    }
+
+    public String obtenerPerfilUsuario(Usuario unUsuario) {
+
+        Class<?> claseDelObjeto = unUsuario.getClass();
+        String perfil = claseDelObjeto.getName();
+        String[] partes = perfil.split("\\.");
+        String ultimaParte = partes[partes.length - 1];
+
+        return ultimaParte;
     }
 }
