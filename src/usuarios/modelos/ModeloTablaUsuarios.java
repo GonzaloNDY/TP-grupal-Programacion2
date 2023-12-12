@@ -16,6 +16,14 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         this.usuarios = gu.verUsuarios();
     }
+    
+    public Usuario obtenerUsuarioEnFila(int fila) {
+        if (fila >= 0 && fila < usuarios.size()) {
+            return usuarios.get(fila);
+        } else {
+            return null;
+        }
+    }
 
     @Override
     public int getRowCount() {
@@ -42,15 +50,15 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
         return this.nombreColumnas.get(columna);
     }
 
-    private String obtenerPerfil(Usuario usuario) {
+    private Perfil obtenerPerfil(Usuario usuario) {
         if (usuario instanceof Cliente) {
-            return "Cliente";
+            return Perfil.CLIENTE;
         }
         if (usuario instanceof Empleado) {
-            return "Empleado";
+            return Perfil.EMPLEADO;
         }
         else {
-            return "Encargado";
+            return Perfil.ENCARGADO;
         }
     }
 }

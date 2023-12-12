@@ -28,6 +28,8 @@ public interface IGestorUsuarios {
 
     public String borrarUsuario(Usuario usuario);
 
+    public String modificarUsuario(Usuario usuarioAModificar, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida);
+
     public boolean existeEsteUsuario(Usuario usuario);
 
     public Usuario obtenerUsuario(String correo);

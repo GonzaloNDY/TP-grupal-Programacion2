@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package usuarios.vistas;
 
 import interfaces.IGestorUsuarios;
@@ -31,6 +27,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
             comboBoxPerfil.addItem(perf.verPerfil());
         }
     }
+
     public void resetearCamposRegistro() {
         this.txtApellido.setText("");
         this.txtNombre.setText("");

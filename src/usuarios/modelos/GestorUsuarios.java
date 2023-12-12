@@ -67,16 +67,15 @@ public class GestorUsuarios implements IGestorUsuarios {
                     userEncontrados.add(user);
                 }
             }
-            Comparator<Usuario> uComp = (u1, u2) -> {
-                int resultado = u1.verApellido().toLowerCase().compareTo(u2.verApellido().toLowerCase());
-                if (resultado == 0) {
-                    resultado = u1.verNombre().toLowerCase().compareTo(u2.verNombre().toLowerCase());
-                }
-                return resultado;
-            };
-            userEncontrados.sort(uComp);
-
-        }
+        }            
+        Comparator<Usuario> uComp = (u1, u2) -> {
+            int resultado = u1.verApellido().toLowerCase().compareTo(u2.verApellido().toLowerCase());
+            if (resultado == 0) {
+                resultado = u1.verNombre().toLowerCase().compareTo(u2.verNombre().toLowerCase());
+            }
+            return resultado;
+        };
+        userEncontrados.sort(uComp);
         return userEncontrados;
     }
 
@@ -99,13 +98,32 @@ public class GestorUsuarios implements IGestorUsuarios {
     public String borrarUsuario(Usuario usuario) {
         if (!existeEsteUsuario(usuario)) {
             return USUARIO_INEXISTENTE;
+        } if (usuario instanceof Cliente) {
+            IGestorPedidos pedidos = GestorPedidos.instanciar();
+            if (pedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
+                return ERROR_PERMISOS;
+            }
         }
-        IGestorPedidos pedidos = GestorPedidos.instanciar();
-        if (pedidos.hayPedidosConEsteCliente((Cliente) usuario)) {
-            return ERROR_PERMISOS;
+        usuarios.remove(usuario);
+        return EXITO_BORRADO;
+    }
+    
+    @Override
+    public String modificarUsuario(Usuario usuarioAModificar, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida){
+        if (!existeEsteUsuario(usuarioAModificar)) {
+            return USUARIO_INEXISTENTE;
+        }
+        String validacion = validarDatos(usuarioAModificar.verCorreo(),apellido, nombre, perfil, clave, claveRepetida);
+        if (!validacion.equals(VALIDACION_EXITO)) {
+            return validacion;
+        }
+        if (obtenerUsuario(usuarioAModificar.verCorreo()) != null) {
+            return USUARIOS_DUPLICADOS;
         } else {
-            usuarios.remove(usuario);
-            return EXITO_BORRADO;
+            usuarioAModificar.asignarApellido(apellido);
+            usuarioAModificar.asignaNombre(nombre);
+            usuarioAModificar.asignaClave(clave);
+            return EXITO;
         }
     }
 
