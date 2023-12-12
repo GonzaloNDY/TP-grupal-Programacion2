@@ -1,9 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package interfaces;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 
+/**
+ *
+ * @author root
+ */
 public interface IControladorUsuarios {
     public static final String TITULO = "Usuarios";
     public static final String CONFIRMACION = "¿Desea borrar el usuario especificado?";
@@ -44,6 +53,7 @@ public interface IControladorUsuarios {
      * @param evt evento
     */
     public void txtApellidoPresionarTecla(KeyEvent evt);
+    
     
     /**
      * Acción a ejecutar cuando se selecciona el botón Buscar

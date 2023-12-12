@@ -23,7 +23,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario();
+        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(null,true);
     }
 
     @Override

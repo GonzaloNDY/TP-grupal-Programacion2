@@ -29,7 +29,7 @@ public class ControladorPrincipal implements IControladorPrincipal{
         ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
         controladorPrincipal.ventanaPrincipal.setTitle(TITULO + " - Grupo 15");
     }
-
+    
     @Override
     public void btnUsuariosClic(ActionEvent evt){
         ControladorUsuarios controladorUsuarios = new ControladorUsuarios(ventanaPrincipal);
