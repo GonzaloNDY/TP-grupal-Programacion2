@@ -1,90 +1,106 @@
-
 package usuarios.modelos;
 
 import interfaces.IControladorAMUsuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import static usuarios.modelos.Perfil.CLIENTE;
 import usuarios.vistas.VentanaAMUsuario;
 import usuarios.vistas.VentanaUsuarios;
 
-
 public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
-    private VentanaAMUsuario ventanaAMUsuario;           
-    private VentanaUsuarios VentanaUsuarios;         //de donde viene
-  //  IGestorUsuarios gu = GestorUsuarios.instanciar();
+
+    private String textoApellido = null;
+    private String textoNombre = null;
+    private String textoCorreo = null;
+    private String textoContraseña = null;
+    private String textoContraseñaRepetida = null;
+    private boolean modoModificacion = false;
+    private VentanaAMUsuario ventanaAMUsuario;
+    private VentanaUsuarios VentanaUsuarios;
+    //  IGestorUsuarios gu = GestorUsuarios.instanciar();
 
     public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaiz) {
+        modoModificacion = false;
         this.ventanaAMUsuario = new VentanaAMUsuario(this);
         VentanaUsuarios = ventanaRaiz;
     }
+
     public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaiz, String correoUsuario) {
-    this.ventanaAMUsuario = new VentanaAMUsuario(this,correoUsuario);
+        modoModificacion = true;
+        this.ventanaAMUsuario = new VentanaAMUsuario(this, correoUsuario);
         VentanaUsuarios = ventanaRaiz;
     }
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-          System.out.println("si se activa el boton guardar");
-//        GestorUsuarios gu = GestorUsuarios.instanciar();
-//        String correo = this.txtCorreo.getText().trim();
-//        String apellido = this.txtApellido.getText().trim();
-//        String nombre = this.txtNombre.getText().trim();
-//        String clave = new String(this.passClave.getPassword());
-//        String claveRepetida = new String(this.passClaveRepetida.getPassword());
-//        String perfilSeleccionadoString = (String) comboBoxPerfil.getSelectedItem();
-//
-//        Perfil perfilSeleccionado = null;
-//
-//        for (Perfil perfil : Perfil.values()) {
-//            if (perfil.verPerfil().equals(perfilSeleccionadoString)) {
-//                perfilSeleccionado = perfil;
-//                break;
-//            }
-//        }
-//        System.out.println();
-//        if (modoModificacion == true) {
-//            gu.borrarUsuario(gu.obtenerUsuario(correo));
-//        }
-//        String validacion = (gu.crearUsuario(correo, apellido, nombre, perfilSeleccionado, clave, claveRepetida));
-//        System.out.println(validacion);
-//        System.out.println();
-//        if (validacion.equals("Usuario creado/modificado con éxito")) {
-//            resetearCamposRegistro();
-//        }
-//        this.dispose();
-       this.ventanaAMUsuario.dispose();
-        VentanaUsuarios.setVisible(true);
- }
+        System.out.println("si se activa el boton guardar");
+        GestorUsuarios gu = GestorUsuarios.instanciar();
+        String perfilSeleccionadoString = (String) ventanaAMUsuario.comboBoxPerfil.getSelectedItem();
+
+        Perfil perfilSeleccionado = null;
+
+        for (Perfil perfil : Perfil.values()) {
+            if (perfil.verPerfil().equals(perfilSeleccionadoString)) {
+                perfilSeleccionado = perfil;
+                break;
+            }
+        }
+        System.out.println();
+        if (modoModificacion == true) {
+            GestorUsuarios guMod = GestorUsuarios.instanciar();
+            textoCorreo = this.ventanaAMUsuario.txtCorreo.getText();
+            guMod.borrarUsuario(guMod.obtenerUsuario(textoCorreo));
+            textoApellido = this.ventanaAMUsuario.txtApellido.getText();
+            textoNombre = this.ventanaAMUsuario.txtNombre.getText();
+            textoContraseña = new String(this.ventanaAMUsuario.passClave.getPassword());
+            textoContraseñaRepetida = new String(this.ventanaAMUsuario.passClaveRepetida.getPassword());
+
+        }
+
+        String validacion = (gu.crearUsuario(textoCorreo, textoApellido, textoNombre, perfilSeleccionado, textoContraseña, textoContraseñaRepetida));
+        System.out.println(validacion);
+        System.out.println();
+
+        if (validacion.equals("Usuario creado/modificado con éxito")) {
+            ventanaAMUsuario.resetearCamposRegistro();
+            ventanaAMUsuario.dispose();
+            VentanaUsuarios.setVisible(true);
+
+        }
+
+    }
 
     @Override
     public void btnCancelarClic(ActionEvent evt) {
         this.ventanaAMUsuario.dispose();
         VentanaUsuarios.setVisible(true);
-        }
+    }
 
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        textoApellido = ventanaAMUsuario.txtApellido.getText().trim();
+
     }
 
     @Override
     public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        textoNombre = ventanaAMUsuario.txtNombre.getText().trim();
     }
 
     @Override
     public void txtCorreoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        textoCorreo = ventanaAMUsuario.txtCorreo.getText().trim();
+        System.out.println(textoCorreo);
     }
 
     @Override
     public void passClavePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        textoContraseña = new String(ventanaAMUsuario.passClave.getPassword());
     }
 
     @Override
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        textoContraseñaRepetida = new String(ventanaAMUsuario.passClaveRepetida.getPassword());
     }
-    
+
 }

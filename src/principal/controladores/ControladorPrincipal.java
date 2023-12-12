@@ -1,6 +1,7 @@
 package principal.controladores;
 
 import interfaces.IControladorPrincipal;
+import interfaces.IControladorUsuarios;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
@@ -21,7 +22,7 @@ public class ControladorPrincipal implements IControladorPrincipal{
     
     @Override
     public void btnUsuariosClic(ActionEvent evt){
-        ControladorUsuarios controladorUsuarios = new ControladorUsuarios(ventanaPrincipal);
+        IControladorUsuarios controladorUsuarios = new ControladorUsuarios(ventanaPrincipal);
         ventanaPrincipal.setVisible(false);
     }
 

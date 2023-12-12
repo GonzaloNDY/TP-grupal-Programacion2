@@ -1,5 +1,6 @@
 package usuarios.modelos;
 
+import interfaces.IControladorAMUsuario;
 import interfaces.IControladorUsuarios;
 import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
@@ -22,13 +23,13 @@ public class ControladorUsuarios implements IControladorUsuarios {
     @Override
     public void btnNuevoClic(ActionEvent evt) {
          ventanaUsuarios.setVisible(false);
-        ControladorVentanaAMUsuarios ControladorAMUsuarios = new ControladorVentanaAMUsuarios(ventanaUsuarios);
+        IControladorAMUsuario ControladorAMUsuarios = new ControladorVentanaAMUsuarios(ventanaUsuarios);
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {    
          ventanaUsuarios.setVisible(false);       //ACA TIENE QUE RECIBIR EL CORREO DEL USUARIO SELEECIONADO EN LA TABLA
-        ControladorVentanaAMUsuarios ControladorAMUsuariosMod = new ControladorVentanaAMUsuarios(ventanaUsuarios,"colmannicolas@");
+        IControladorAMUsuario ControladorAMUsuariosMod = new ControladorVentanaAMUsuarios(ventanaUsuarios,"basualdo@");
        
     }
 

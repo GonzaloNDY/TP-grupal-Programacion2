@@ -13,17 +13,17 @@ import usuarios.modelos.Usuario;
 public class VentanaAMUsuario extends javax.swing.JDialog {
 
     private ControladorVentanaAMUsuarios controladorAMUsuario;
-    private boolean modoModificacion = false;
+    
     public void setControlador(ControladorVentanaAMUsuarios controlador) {
         this.controladorAMUsuario = controlador;
     }
 
-
     // Constructor para crear usuarios
     public VentanaAMUsuario(ControladorVentanaAMUsuarios controlador) {
-        
+
         initComponents();
-        modoModificacion = false;
+        setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true); // Hace visible la ventana
         this.controladorAMUsuario = controlador;
         if (controladorAMUsuario != null) {
@@ -32,13 +32,14 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     }
 
     // Constructor para casos de modificación (requiere correo de usuario)
-    public VentanaAMUsuario(ControladorVentanaAMUsuarios controlador , String correoUsuario) {
-        
+    public VentanaAMUsuario(ControladorVentanaAMUsuarios controlador, String correoUsuario) {
+
         initComponents();
         llenarDatosParaModificacion(correoUsuario);
-        modoModificacion = true;
+        setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true); // Hace visible la ventana
-        
+        llenarDatosParaModificacion(correoUsuario);
         this.controladorAMUsuario = controlador;
         if (controladorAMUsuario != null) {
             this.setControlador(controladorAMUsuario);
@@ -66,7 +67,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         this.comboBoxPerfil.addItem(gu.obtenerPerfilUsuario(u));
         this.passClave.setText(u.verClave());
         this.passClaveRepetida.setText(u.verClave());
-
     }
 
     public void resetearCamposRegistro() {
@@ -116,20 +116,20 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         jLabel6.setText("Clave Repetida");
 
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtApellidoKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyReleased(evt);
             }
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
             }
         });
 
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCorreoKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyReleased(evt);
             }
         });
 
@@ -148,14 +148,14 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         });
 
         passClaveRepetida.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                passClaveRepetidaKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passClaveRepetidaKeyReleased(evt);
             }
         });
 
         passClave.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                passClaveKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passClaveKeyReleased(evt);
             }
         });
 
@@ -232,6 +232,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
         controladorAMUsuario.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -239,77 +240,74 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         controladorAMUsuario.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
-        controladorAMUsuario.txtCorreoPresionarTecla(evt);
-    }//GEN-LAST:event_txtCorreoKeyTyped
+    private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
+       controladorAMUsuario.txtCorreoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCorreoKeyReleased
 
-    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+    private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
          controladorAMUsuario.txtApellidoPresionarTecla(evt);
-    }//GEN-LAST:event_txtApellidoKeyTyped
+    }//GEN-LAST:event_txtApellidoKeyReleased
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        controladorAMUsuario.txtNombrePresionarTecla(evt);
-    }//GEN-LAST:event_txtNombreKeyTyped
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+         controladorAMUsuario.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_txtNombreKeyReleased
 
-    private void passClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveKeyTyped
-         controladorAMUsuario.passClavePresionarTecla(evt);
-    }//GEN-LAST:event_passClaveKeyTyped
+    private void passClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveKeyReleased
+      controladorAMUsuario.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_passClaveKeyReleased
 
-    private void passClaveRepetidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveRepetidaKeyTyped
-         controladorAMUsuario.passClaveRepetidaPresionarTecla(evt);
-    }//GEN-LAST:event_passClaveRepetidaKeyTyped
+    private void passClaveRepetidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveRepetidaKeyReleased
+      controladorAMUsuario.passClaveRepetidaPresionarTecla(evt);
+    }//GEN-LAST:event_passClaveRepetidaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnGuardar;
-    private javax.swing.JComboBox<String> comboBoxPerfil;
+    public javax.swing.JComboBox<String> comboBoxPerfil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField passClave;
-    private javax.swing.JPasswordField passClaveRepetida;
-    private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtNombre;
+    public javax.swing.JPasswordField passClave;
+    public javax.swing.JPasswordField passClaveRepetida;
+    public javax.swing.JTextField txtApellido;
+    public javax.swing.JTextField txtCorreo;
+    public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-    public void btnGuardarClic(ActionEvent evt) {
-        System.out.println("si se activa el boton guardar");
-        GestorUsuarios gu = GestorUsuarios.instanciar();
-        String correo = this.txtCorreo.getText().trim();
-        String apellido = this.txtApellido.getText().trim();
-        String nombre = this.txtNombre.getText().trim();
-        String clave = new String(this.passClave.getPassword());
-        String claveRepetida = new String(this.passClaveRepetida.getPassword());
-        String perfilSeleccionadoString = (String) comboBoxPerfil.getSelectedItem();
-
-        Perfil perfilSeleccionado = null;
-
-        for (Perfil perfil : Perfil.values()) {
-            if (perfil.verPerfil().equals(perfilSeleccionadoString)) {
-                perfilSeleccionado = perfil;
-                break;
-            }
-        }
-        System.out.println();
-        if (modoModificacion == true) {
-            gu.borrarUsuario(gu.obtenerUsuario(correo));
-        }
-        String validacion = (gu.crearUsuario(correo, apellido, nombre, perfilSeleccionado, clave, claveRepetida));
-        System.out.println(validacion);
-        System.out.println();
-        if (validacion.equals("Usuario creado/modificado con éxito")) {
-            resetearCamposRegistro();
-        }
-        this.dispose();
-    }
-
-    public void btnCancelarClic(ActionEvent evt) {
-        this.dispose();
-    }
+//    public void btnGuardarClic(ActionEvent evt) {
+//        System.out.println("si se activa el boton guardar");
+//        GestorUsuarios gu = GestorUsuarios.instanciar();
+//        String correo = this.txtCorreo.getText().trim();
+//        String apellido = this.txtApellido.getText().trim();
+//        String nombre = this.txtNombre.getText().trim();
+//        String clave = new String(this.passClave.getPassword());
+//        String claveRepetida = new String(this.passClaveRepetida.getPassword());
+//        String perfilSeleccionadoString = (String) comboBoxPerfil.getSelectedItem();
+//
+//        Perfil perfilSeleccionado = null;
+//
+//        for (Perfil perfil : Perfil.values()) {
+//            if (perfil.verPerfil().equals(perfilSeleccionadoString)) {
+//                perfilSeleccionado = perfil;
+//                break;
+//            }
+//        }
+//        System.out.println();
+//        String validacion = (gu.crearUsuario(correo, apellido, nombre, perfilSeleccionado, clave, claveRepetida));
+//        System.out.println(validacion);
+//        System.out.println();
+//        if (validacion.equals("Usuario creado/modificado con éxito")) {
+//            resetearCamposRegistro();
+//        }
+//        this.dispose();
+//    }
+//
+//    public void btnCancelarClic(ActionEvent evt) {
+//        this.dispose();
+//    }
 
 }

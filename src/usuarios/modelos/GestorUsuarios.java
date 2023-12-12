@@ -36,6 +36,7 @@ public class GestorUsuarios implements IGestorUsuarios {
     @Override
     public String crearUsuario(String correo, String apellido, String nombre, Perfil perfil, String clave, String claveRepetida) {
         String validacion = validarDatos(correo, apellido, nombre, perfil, clave, claveRepetida);
+       
         if (!validacion.equals(VALIDACION_EXITO)) {
             return validacion;
         } else {
@@ -104,6 +105,7 @@ public class GestorUsuarios implements IGestorUsuarios {
 
     @Override
     public String borrarUsuario(Usuario usuario) {
+        
         if (!existeEsteUsuario(usuario)) {
             return USUARIO_INEXISTENTE;
         }
@@ -119,6 +121,8 @@ public class GestorUsuarios implements IGestorUsuarios {
 
         // Remover el usuario si no hay pedidos asociados o si el usuario no es un Cliente
         usuarios.remove(usuario);
+        escribirArchivo();
+       
         return EXITO_BORRADO;
     }
 
@@ -162,7 +166,6 @@ public class GestorUsuarios implements IGestorUsuarios {
     }
 
     public void escribirArchivo() {
-        leerArchivo();                      // se puede poner en otra parte
         File f = new File("usuarios");
         BufferedWriter bw = null;
         try {
