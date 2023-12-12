@@ -24,6 +24,17 @@ public class ControladorUsuarios implements IControladorUsuarios{
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(null,true);
+//        //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
+//        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableStructureChanged();
+////        ventanaUsuarios.getTablaUsuarios().repaint();
+//        ventanaUsuarios.getTablaUsuarios().updateUI();
+////        ventanaUsuarios.getTablaUsuarios().getParent().validate();
+////        ventanaUsuarios.getTablaUsuarios().getParent().repaint();
+//        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
+
+        // Solucion temporal para actualizar la tabla:
+        this.ventanaUsuarios.dispose();
+        ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
     }
 
     @Override
@@ -35,15 +46,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
             return;
         }
         Usuario usuario = ventanaUsuarios.obtenerModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
-        Perfil perfilSeleccionado = (Perfil) ventanaUsuarios.obtenerModeloTablaUsuarios().getValueAt(filaSeleccionada, 2);
-        /*
-        
-        */
-        String apellidoModificado = null;
-        String nombreModificado = null;
-        String claveModificada = null;
-        String claveRepetida = null;
-        gu.modificarUsuario(usuario, apellidoModificado, nombreModificado, perfilSeleccionado, claveModificada, claveRepetida);
+        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(ventanaUsuarios, true, usuario.verCorreo());
 //        //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
 //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableStructureChanged();
 ////        ventanaUsuarios.getTablaUsuarios().repaint();
@@ -120,8 +123,7 @@ public class ControladorUsuarios implements IControladorUsuarios{
             mostrarMensaje("Ingrese un apellido para realizar la búsqueda");
             return;
         }
-        
-        JOptionPane.showMessageDialog(null, apellido, "Prueba", JOptionPane.WARNING_MESSAGE);
+
         List<Usuario> usuariosEncontrados = gu.buscarUsuarios(apellido);
         // Revisar:
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(usuariosEncontrados);

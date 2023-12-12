@@ -18,8 +18,8 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
         super(ventanaPadre, modal);
         initComponents();
         modoModificacion = false;
-        setVisible(true); // Hace visible la ventana
         setLocationRelativeTo(null);
+        setVisible(true); // Hace visible la ventana
     }
 
     // Constructor para casos de modificación (requiere correo de usuario)
@@ -28,8 +28,8 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
         initComponents();
         llenarDatosParaModificacion(correoUsuario);
         modoModificacion = true;
-        setVisible(true); // Hace visible la ventana
         setLocationRelativeTo(null);
+        setVisible(true); // Hace visible la ventana
     }
     public void llenarComboPerfil() {
         for (Perfil perf : Perfil.values()) {
