@@ -15,6 +15,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
     public VentanaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        System.out.println("entra aqui 1");
         initComponents();
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
@@ -22,6 +23,8 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }
 
     public VentanaUsuarios(){
+                System.out.println("entra aqui 2");
+
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -32,6 +35,8 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }
 
     public VentanaUsuarios(ControladorUsuarios controlador) {
+                System.out.println("entra aqui 3");
+
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);

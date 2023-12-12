@@ -5,32 +5,47 @@ import interfaces.IGestorUsuarios;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import usuarios.modelos.ControladorVentanaAMUsuarios;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
 import usuarios.modelos.Usuario;
 
-public class VentanaAMUsuario extends javax.swing.JDialog implements IControladorAMUsuario {
+public class VentanaAMUsuario extends javax.swing.JDialog {
 
+    private ControladorVentanaAMUsuarios controladorAMUsuario;
     private boolean modoModificacion = false;
+    public void setControlador(ControladorVentanaAMUsuarios controlador) {
+        this.controladorAMUsuario = controlador;
+    }
+
 
     // Constructor para crear usuarios
-    public VentanaAMUsuario(Dialog ventanaPadre, boolean modal) {
-        super(ventanaPadre, modal);
+    public VentanaAMUsuario(ControladorVentanaAMUsuarios controlador) {
+        
         initComponents();
         modoModificacion = false;
         setVisible(true); // Hace visible la ventana
-        setLocationRelativeTo(null);
+        this.controladorAMUsuario = controlador;
+        if (controladorAMUsuario != null) {
+            this.setControlador(controladorAMUsuario);
+        }
     }
 
     // Constructor para casos de modificación (requiere correo de usuario)
-    public VentanaAMUsuario(Dialog ventanaPadre, boolean modal, String correoUsuario) {
-        super(ventanaPadre, modal);
+    public VentanaAMUsuario(ControladorVentanaAMUsuarios controlador , String correoUsuario) {
+        
         initComponents();
         llenarDatosParaModificacion(correoUsuario);
         modoModificacion = true;
         setVisible(true); // Hace visible la ventana
-        setLocationRelativeTo(null);
+        
+        this.controladorAMUsuario = controlador;
+        if (controladorAMUsuario != null) {
+            this.setControlador(controladorAMUsuario);
+        }
+
     }
+
     public void llenarComboPerfil() {
         for (Perfil perf : Perfil.values()) {
             comboBoxPerfil.addItem(perf.verPerfil());
@@ -100,6 +115,24 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
 
         jLabel6.setText("Clave Repetida");
 
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyTyped(evt);
+            }
+        });
+
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +144,18 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
+            }
+        });
+
+        passClaveRepetida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passClaveRepetidaKeyTyped(evt);
+            }
+        });
+
+        passClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passClaveKeyTyped(evt);
             }
         });
 
@@ -187,12 +232,32 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
     }//GEN-LAST:event_formWindowOpened
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        btnGuardarClic(evt);
+        controladorAMUsuario.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        btnCancelarClic(evt);
+        controladorAMUsuario.btnCancelarClic(evt);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+        controladorAMUsuario.txtCorreoPresionarTecla(evt);
+    }//GEN-LAST:event_txtCorreoKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+         controladorAMUsuario.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        controladorAMUsuario.txtNombrePresionarTecla(evt);
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void passClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveKeyTyped
+         controladorAMUsuario.passClavePresionarTecla(evt);
+    }//GEN-LAST:event_passClaveKeyTyped
+
+    private void passClaveRepetidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveRepetidaKeyTyped
+         controladorAMUsuario.passClaveRepetidaPresionarTecla(evt);
+    }//GEN-LAST:event_passClaveRepetidaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,7 +277,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-    @Override
     public void btnGuardarClic(ActionEvent evt) {
         System.out.println("si se activa el boton guardar");
         GestorUsuarios gu = GestorUsuarios.instanciar();
@@ -244,33 +308,8 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
         this.dispose();
     }
 
-    @Override
     public void btnCancelarClic(ActionEvent evt) {
         this.dispose();
     }
 
-    @Override
-    public void txtApellidoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void txtNombrePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void txtCorreoPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void passClavePresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

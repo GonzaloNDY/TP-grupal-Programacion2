@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import principal.vistas.VentanaPrincipal;
-import usuarios.vistas.VentanaAMUsuario;
 import usuarios.vistas.VentanaUsuarios;
 
-public class ControladorUsuarios implements IControladorUsuarios{
+public class ControladorUsuarios implements IControladorUsuarios {
+
     private VentanaUsuarios ventanaUsuarios;
     private VentanaPrincipal ventanaPrincipal;
     IGestorUsuarios gu = GestorUsuarios.instanciar();
@@ -21,21 +21,24 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(null,true);
+         ventanaUsuarios.setVisible(false);
+        ControladorVentanaAMUsuarios ControladorAMUsuarios = new ControladorVentanaAMUsuarios(ventanaUsuarios);
     }
 
     @Override
-    public void btnModificarClic(ActionEvent evt) {                 //ACA TIENE QUE RECIBIR EL CORREO DEL USUARIO SELEECIONADO EN LA TABLA
-        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(null,true,"colmannicolas@");
+    public void btnModificarClic(ActionEvent evt) {    
+         ventanaUsuarios.setVisible(false);       //ACA TIENE QUE RECIBIR EL CORREO DEL USUARIO SELEECIONADO EN LA TABLA
+        ControladorVentanaAMUsuarios ControladorAMUsuariosMod = new ControladorVentanaAMUsuarios(ventanaUsuarios,"colmannicolas@");
+       
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
         int opcion = javax.swing.JOptionPane.showOptionDialog(null,
-        "¿Estás seguro de que quiere eliminar este usuario?", "Confirmar eliminación de usuario",
-        javax.swing.JOptionPane.YES_NO_OPTION,
-        javax.swing.JOptionPane.QUESTION_MESSAGE, null,           
-        new Object[]{"Sí, eliminar", "No, cancelar"}, "Sí, eliminar");
+                "¿Estás seguro de que quiere eliminar este usuario?", "Confirmar eliminación de usuario",
+                javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE, null,
+                new Object[]{"Sí, eliminar", "No, cancelar"}, "Sí, eliminar");
         if (opcion == javax.swing.JOptionPane.YES_OPTION) {
             gu.borrarUsuario(null);
         }
