@@ -241,6 +241,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog implements IControlado
         if (validacion.equals("Usuario creado/modificado con éxito")) {
             resetearCamposRegistro();
         }
+        this.dispose();
     }
 
     @Override
