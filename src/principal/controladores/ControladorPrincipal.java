@@ -4,26 +4,25 @@ import interfaces.IControladorPrincipal;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
-import usuarios.vistas.VentanaUsuarios;
+import usuarios.modelos.ControladorUsuarios;
 
 public class ControladorPrincipal implements IControladorPrincipal{
-    
-    private VentanaPrincipal ventanaRaiz;
-    
+    private VentanaPrincipal ventanaPrincipal;
+
     public ControladorPrincipal() {
-        this.ventanaRaiz = new VentanaPrincipal();
-        this.ventanaRaiz.setControlador(this);
+        this.ventanaPrincipal = new VentanaPrincipal();
+        this.ventanaPrincipal.setControlador(this);
     }
 
     public static void main(String[] args) {
         ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
-        controladorPrincipal.ventanaRaiz.setTitle(TITULO + " - Grupo 15");
+        controladorPrincipal.ventanaPrincipal.setTitle(TITULO + " - Grupo 15");
     }
 
     @Override
     public void btnUsuariosClic(ActionEvent evt){
-        VentanaUsuarios ventanaUsuarios = new VentanaUsuarios();
-        ventanaUsuarios.setVisible(true);
+        ControladorUsuarios controladorUsuarios = new ControladorUsuarios(ventanaPrincipal);
+        ventanaPrincipal.setVisible(false);
     }
 
     @Override

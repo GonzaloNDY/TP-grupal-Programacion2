@@ -1,25 +1,44 @@
 package usuarios.modelos;
 
 import interfaces.IControladorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
+import principal.vistas.VentanaPrincipal;
+import usuarios.vistas.VentanaAMUsuario;
+import usuarios.vistas.VentanaUsuarios;
 
 public class ControladorUsuarios implements IControladorUsuarios{
+    private VentanaUsuarios ventanaUsuarios;
+    private VentanaPrincipal ventanaPrincipal;
+    IGestorUsuarios gu = GestorUsuarios.instanciar();
+
+    public ControladorUsuarios(VentanaPrincipal ventanaRaiz) {
+        this.ventanaUsuarios = new VentanaUsuarios(this);
+        ventanaPrincipal = ventanaRaiz;
+    }
 
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario();
     }
 
     @Override
     public void btnModificarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario();
     }
 
     @Override
     public void btnBorrarClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int opcion = javax.swing.JOptionPane.showOptionDialog(null,
+        "¿Estás seguro de que quiere eliminar este usuario?", "Confirmar eliminación de usuario",
+        javax.swing.JOptionPane.YES_NO_OPTION,
+        javax.swing.JOptionPane.QUESTION_MESSAGE, null,           
+        new Object[]{"Sí, eliminar", "No, cancelar"}, "Sí, eliminar");
+        if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+            gu.borrarUsuario(null);
+        }
     }
 
     @Override
@@ -29,7 +48,8 @@ public class ControladorUsuarios implements IControladorUsuarios{
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.ventanaUsuarios.dispose();
+        ventanaPrincipal.setVisible(true);
     }
 
     @Override
@@ -41,5 +61,4 @@ public class ControladorUsuarios implements IControladorUsuarios{
     public void btnBuscarClic(ActionEvent evt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
 }

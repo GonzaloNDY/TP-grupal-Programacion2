@@ -1,20 +1,48 @@
 package usuarios.vistas;
 
+import interfaces.IGestorUsuarios;
+import java.awt.Dialog;
+import usuarios.modelos.ControladorUsuarios;
+import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
 
 public class VentanaUsuarios extends javax.swing.JDialog {
+    private ControladorUsuarios controladorUsuarios;
+
+    public void setControlador(ControladorUsuarios controlador) {
+        this.controladorUsuarios = controlador;
+    }
 
     public VentanaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(null);
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
         tablaUsuarios.setModel(mtu);
     }
+
     public VentanaUsuarios(){
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
+        tablaUsuarios.setModel(mtu);
+    }
+
+    public VentanaUsuarios(ControladorUsuarios controlador) {
+        initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
+        tablaUsuarios.setModel(mtu);
+        this.controladorUsuarios = controlador;
+        if (controladorUsuarios != null) {
+            this.setControlador(controladorUsuarios);
+        }
     }
 
     /**
@@ -38,6 +66,12 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuarios - Grupo 15  | Encargado");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         Buscar.setText("Buscar");
         Buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -146,66 +180,28 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoActionPerformed
-        // TODO add your handling code here:
+        controladorUsuarios.btnNuevoClic(evt);
     }//GEN-LAST:event_NuevoActionPerformed
 
     private void BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarActionPerformed
-        // TODO add your handling code here:
+        controladorUsuarios.btnBorrarClic(evt);
     }//GEN-LAST:event_BorrarActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        // TODO add your handling code here:
+        controladorUsuarios.btnVolverClic(evt);
     }//GEN-LAST:event_VolverActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        // TODO add your handling code here:
+        controladorUsuarios.btnModificarClic(evt);
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
+        controladorUsuarios.btnBuscarClic(evt);
     }//GEN-LAST:event_BuscarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                VentanaUsuarios dialog = new VentanaUsuarios(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Borrar;

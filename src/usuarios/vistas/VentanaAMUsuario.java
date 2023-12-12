@@ -14,9 +14,9 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public VentanaAMUsuario() {
         super((Dialog)null, true);
         initComponents();
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
+        setVisible(true); // Hace visible la ventana
     }
-
 
     public VentanaAMUsuario(Dialog ventanaPadre) {
         super(ventanaPadre, true);
