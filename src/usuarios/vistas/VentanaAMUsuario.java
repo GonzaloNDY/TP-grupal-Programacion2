@@ -1,10 +1,6 @@
 package usuarios.vistas;
 
-import interfaces.IControladorAMUsuario;
 import interfaces.IGestorUsuarios;
-import java.awt.Dialog;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import usuarios.modelos.ControladorVentanaAMUsuarios;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.Perfil;
@@ -266,7 +262,6 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         controladorAMUsuario.passClaveRepetidaPresionarTecla(evt);
     }//GEN-LAST:event_passClaveRepetidaKeyReleased
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     public javax.swing.JButton btnGuardar;
@@ -283,6 +278,4 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
-
-
 }

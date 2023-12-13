@@ -2,41 +2,25 @@ package usuarios.vistas;
 
 import interfaces.IGestorUsuarios;
 import javax.swing.JTable;
+import principal.vistas.VentanaPrincipal;
 import usuarios.modelos.ControladorUsuarios;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
 
 public class VentanaUsuarios extends javax.swing.JDialog {
     private ControladorUsuarios controladorUsuarios;
-
-    public void setControlador(ControladorUsuarios controlador) {
-        this.controladorUsuarios = controlador;
-    }
-
+    private VentanaPrincipal ventanaPrincipal;
+    
+    // Constructores:
     public VentanaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        System.out.println("entra aqui 1");
         initComponents();
-        IGestorUsuarios gu = GestorUsuarios.instanciar();
-        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
-        tablaUsuarios.setModel(mtu);
-    }
-
-    public VentanaUsuarios(){
-                System.out.println("entra aqui 2");
-
-        initComponents();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
         tablaUsuarios.setModel(mtu);
     }
 
     public VentanaUsuarios(ControladorUsuarios controlador) {
-                System.out.println("entra aqui 3");
-
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -49,7 +33,27 @@ public class VentanaUsuarios extends javax.swing.JDialog {
             this.setControlador(controladorUsuarios);
         }
     }
-
+    
+    // Métodos get/set:
+    public void setControlador(ControladorUsuarios controlador) {
+        this.controladorUsuarios = controlador;
+    }
+    public JTable getTablaUsuarios() {
+        return tablaUsuarios;
+    }
+    
+    public void setTablaUsuarios(JTable tabla){
+        tabla = tablaUsuarios;
+    }
+    
+    public ModeloTablaUsuarios getModeloTablaUsuarios() {
+        return (ModeloTablaUsuarios) tablaUsuarios.getModel();
+    }
+    
+    public String getApellido (){
+        return this.txtApellido.getText().trim();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -218,9 +222,6 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         System.out.println("Actualizo la tabla");
         controladorUsuarios.ventanaObtenerFoco(evt);
-//        IGestorUsuarios gu = GestorUsuarios.instanciar();
-//        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
-//        tablaUsuarios.setModel(mtu);
     }//GEN-LAST:event_formWindowGainedFocus
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -234,20 +235,4 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     public javax.swing.JTable tablaUsuarios;
     private javax.swing.JTextField txtApellido;
     // End of variables declaration//GEN-END:variables
-
-    public JTable getTablaUsuarios() {
-        return tablaUsuarios;
-    }
-    
-    public void setTablaUsuarios(JTable tabla){
-        tabla = tablaUsuarios;
-    }
-    
-    public ModeloTablaUsuarios obtenerModeloTablaUsuarios() {
-        return (ModeloTablaUsuarios) tablaUsuarios.getModel();
-    }
-    
-    public String obtenerApellido (){
-        return this.txtApellido.getText().trim();
-    }
 }

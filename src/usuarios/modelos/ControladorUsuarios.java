@@ -16,12 +16,14 @@ public class ControladorUsuarios implements IControladorUsuarios {
     private VentanaUsuarios ventanaUsuarios;
     private VentanaPrincipal ventanaPrincipal;
     IGestorUsuarios gu = GestorUsuarios.instanciar();
-
+    
+    // Constructores:
     public ControladorUsuarios(VentanaPrincipal ventanaRaiz) {
         this.ventanaUsuarios = new VentanaUsuarios(this);
         ventanaPrincipal = ventanaRaiz;
     }
 
+    // Métodos implementados:
     @Override
     public void btnNuevoClic(ActionEvent evt) {
         ventanaUsuarios.setVisible(false);
@@ -36,21 +38,10 @@ public class ControladorUsuarios implements IControladorUsuarios {
             mostrarMensaje("Seleccione un usuario para modificar");
             return;
         }
-        Usuario usuario = ventanaUsuarios.obtenerModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
+        Usuario usuario = ventanaUsuarios.getModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
 
         IControladorAMUsuario ControladorAMUsuariosMod = new ControladorVentanaAMUsuarios(ventanaUsuarios, usuario.verCorreo());
         ventanaUsuarios.setVisible(false);
-//        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(null,true);
-//        //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
-//        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableStructureChanged();
-////        ventanaUsuarios.getTablaUsuarios().repaint();
-//        ventanaUsuarios.getTablaUsuarios().updateUI();
-////        ventanaUsuarios.getTablaUsuarios().getParent().validate();
-////        ventanaUsuarios.getTablaUsuarios().getParent().repaint();
-//        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
-        // Solucion temporal para actualizar la tabla:
-        //    this.ventanaUsuarios.dispose();
-        //  ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
     }
 
     @Override
@@ -70,28 +61,15 @@ public class ControladorUsuarios implements IControladorUsuarios {
                  "Sí, eliminar");
 
         if (opcion == javax.swing.JOptionPane.YES_OPTION) {
-            Usuario usuario = ventanaUsuarios.obtenerModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
+            Usuario usuario = ventanaUsuarios.getModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
             gu.borrarUsuario(usuario);
-//            //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
-//        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableStructureChanged();
-////        ventanaUsuarios.getTablaUsuarios().repaint();
-//        ventanaUsuarios.getTablaUsuarios().updateUI();
-////        ventanaUsuarios.getTablaUsuarios().getParent().validate();
-////        ventanaUsuarios.getTablaUsuarios().getParent().repaint();
-//        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
-
-            // Solucion temporal para actualizar la tabla:
-            //  this.ventanaUsuarios.dispose();
+            this.ventanaUsuarios.dispose();
             ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
         }
     }
 
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
-        // No sé que hacer aqui
-//        List<Usuario> listaUsuarios = gu.verUsuarios();
-//        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(listaUsuarios);
-//        ventanaUsuarios.getTablaUsuarios().setModel(mtu);
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
         ventanaUsuarios.tablaUsuarios.setModel(mtu);
@@ -105,7 +83,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
     @Override
     public void txtApellidoPresionarTecla(KeyEvent evt) {
-        String apellido = ventanaUsuarios.obtenerApellido();
+        String apellido = ventanaUsuarios.getApellido();
         List<Usuario> usuariosFiltrados = gu.buscarUsuarios(apellido);
         // Revisar:
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(usuariosFiltrados);
@@ -115,7 +93,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
     @Override
     public void btnBuscarClic(ActionEvent evt) {
         // Falta actualizar la tabla:
-        String apellido = ventanaUsuarios.obtenerApellido();
+        String apellido = ventanaUsuarios.getApellido();
 
         if (apellido.isEmpty()) {
             mostrarMensaje("Ingrese un apellido para realizar la búsqueda");
@@ -127,7 +105,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(usuariosEncontrados);
         ventanaUsuarios.getTablaUsuarios().setModel(mtu);
 //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
-        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableStructureChanged();
+        ventanaUsuarios.getModeloTablaUsuarios().fireTableStructureChanged();
 //        ventanaUsuarios.getTablaUsuarios().repaint();
         ventanaUsuarios.getTablaUsuarios().updateUI();
 //        ventanaUsuarios.getTablaUsuarios().getParent().validate();
@@ -135,6 +113,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
         ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
     }
 
+    // Métodos auxiliares:
     private void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, "Mensaje del sistema:", JOptionPane.INFORMATION_MESSAGE);
     }

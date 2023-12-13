@@ -3,6 +3,21 @@ package principal.vistas;
 import principal.controladores.ControladorPrincipal;
 
 public class VentanaPrincipal extends javax.swing.JFrame{
+    private ControladorPrincipal controlador;
+
+    // Constructores:
+    public VentanaPrincipal() {
+        initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+    }
+
+    // Métodos get/set:
+    public void setControlador(ControladorPrincipal controlador) {
+        this.controlador = controlador;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,18 +132,6 @@ public class VentanaPrincipal extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public VentanaPrincipal() {
-        initComponents();
-        setVisible(true);
-        setLocationRelativeTo(null);
-        setResizable(false);
-    }
-
-    private ControladorPrincipal controlador;
-
-    public void setControlador(ControladorPrincipal controlador) {
-        this.controlador = controlador;
-    }
 
     private void ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosActionPerformed
         controlador.btnProductosClic(evt);

@@ -3,7 +3,6 @@ package usuarios.modelos;
 import interfaces.IControladorAMUsuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import static usuarios.modelos.Perfil.CLIENTE;
 import usuarios.vistas.VentanaAMUsuario;
 import usuarios.vistas.VentanaUsuarios;
 
@@ -17,7 +16,6 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
     private boolean modoModificacion = false;
     private VentanaAMUsuario ventanaAMUsuario;
     private VentanaUsuarios ventanaUsuarios;
-    //  IGestorUsuarios gu = GestorUsuarios.instanciar();
 
     public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaiz) {
         modoModificacion = false;
@@ -54,7 +52,6 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
             textoNombre = this.ventanaAMUsuario.txtNombre.getText();
             textoContraseña = new String(this.ventanaAMUsuario.passClave.getPassword());
             textoContraseñaRepetida = new String(this.ventanaAMUsuario.passClaveRepetida.getPassword());
-
         }
 
         String validacion = (gu.crearUsuario(textoCorreo, textoApellido, textoNombre, perfilSeleccionado, textoContraseña, textoContraseñaRepetida));
@@ -65,9 +62,6 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
             ventanaAMUsuario.resetearCamposRegistro();
             ventanaAMUsuario.dispose();
             ventanaUsuarios.setVisible(true);
-       //     ControladorUsuarios nuevoControlador = new ControladorUsuarios(VentanaUsuarios);
-         //   VentanaUsuarios.setVisible(true);
-
         }
 
     }
