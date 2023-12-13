@@ -1,25 +1,23 @@
 package usuarios.modelos;
 
-import interfaces.IGestorUsuarios;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class ModeloTablaUsuarios extends AbstractTableModel {
     private List<String> nombreColumnas = new ArrayList<>();
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> listaUsuarios = new ArrayList<>();
 
     public ModeloTablaUsuarios(List<Usuario> usuarios) {
         this.nombreColumnas.add("Apellidos");
         this.nombreColumnas.add("Nombres");
         this.nombreColumnas.add("Perfil");
-        IGestorUsuarios gu = GestorUsuarios.instanciar();
-        this.usuarios = gu.verUsuarios();
+        listaUsuarios = usuarios;
     }
     
     public Usuario obtenerUsuarioEnFila(int fila) {
-        if (fila >= 0 && fila < usuarios.size()) {
-            return usuarios.get(fila);
+        if (fila >= 0 && fila < listaUsuarios.size()) {
+            return listaUsuarios.get(fila);
         } else {
             return null;
         }
@@ -27,7 +25,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return this.usuarios.size();
+        return this.listaUsuarios.size();
     }
 
     @Override
@@ -37,7 +35,7 @@ public class ModeloTablaUsuarios extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int fila, int columna) {
-        Usuario u = this.usuarios.get(fila);
+        Usuario u = this.listaUsuarios.get(fila);
         switch(columna) {
             case 0 : return u.verApellido();
             case 1 : return u.verNombre();

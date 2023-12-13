@@ -22,6 +22,11 @@ public class ControladorUsuarios implements IControladorUsuarios {
         this.ventanaUsuarios = new VentanaUsuarios(this);
         ventanaPrincipal = ventanaRaiz;
     }
+    
+    public ControladorUsuarios(VentanaPrincipal ventanaRaiz, String apellido) {
+        this.ventanaUsuarios = new VentanaUsuarios(this, apellido);
+        ventanaPrincipal = ventanaRaiz;
+    }
 
     // Métodos implementados:
     @Override
@@ -63,8 +68,6 @@ public class ControladorUsuarios implements IControladorUsuarios {
         if (opcion == javax.swing.JOptionPane.YES_OPTION) {
             Usuario usuario = ventanaUsuarios.getModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
             gu.borrarUsuario(usuario);
-            this.ventanaUsuarios.dispose();
-            ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
         }
     }
 
@@ -85,32 +88,18 @@ public class ControladorUsuarios implements IControladorUsuarios {
     public void txtApellidoPresionarTecla(KeyEvent evt) {
         String apellido = ventanaUsuarios.getApellido();
         List<Usuario> usuariosFiltrados = gu.buscarUsuarios(apellido);
-        // Revisar:
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(usuariosFiltrados);
         ventanaUsuarios.getTablaUsuarios().setModel(mtu);
     }
 
     @Override
     public void btnBuscarClic(ActionEvent evt) {
-        // Falta actualizar la tabla:
         String apellido = ventanaUsuarios.getApellido();
 
         if (apellido.isEmpty()) {
             mostrarMensaje("Ingrese un apellido para realizar la búsqueda");
             return;
         }
-
-        List<Usuario> usuariosEncontrados = gu.buscarUsuarios(apellido);
-        // Revisar:
-        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(usuariosEncontrados);
-        ventanaUsuarios.getTablaUsuarios().setModel(mtu);
-//        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
-        ventanaUsuarios.getModeloTablaUsuarios().fireTableStructureChanged();
-//        ventanaUsuarios.getTablaUsuarios().repaint();
-        ventanaUsuarios.getTablaUsuarios().updateUI();
-//        ventanaUsuarios.getTablaUsuarios().getParent().validate();
-//        ventanaUsuarios.getTablaUsuarios().getParent().repaint();
-        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
     }
 
     // Métodos auxiliares:

@@ -1,11 +1,13 @@
 package usuarios.vistas;
 
 import interfaces.IGestorUsuarios;
+import java.util.List;
 import javax.swing.JTable;
 import principal.vistas.VentanaPrincipal;
 import usuarios.modelos.ControladorUsuarios;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
+import usuarios.modelos.Usuario;
 
 public class VentanaUsuarios extends javax.swing.JDialog {
     private ControladorUsuarios controladorUsuarios;
@@ -27,6 +29,21 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         setResizable(false);
         IGestorUsuarios gu = GestorUsuarios.instanciar();
         ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
+        tablaUsuarios.setModel(mtu);
+        this.controladorUsuarios = controlador;
+        if (controladorUsuarios != null) {
+            this.setControlador(controladorUsuarios);
+        }
+    }
+    
+    public VentanaUsuarios(ControladorUsuarios controlador, String apellido) {
+        initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        List<Usuario> usuariosFiltrados = gu.buscarUsuarios(apellido);
+        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(usuariosFiltrados);
         tablaUsuarios.setModel(mtu);
         this.controladorUsuarios = controlador;
         if (controladorUsuarios != null) {

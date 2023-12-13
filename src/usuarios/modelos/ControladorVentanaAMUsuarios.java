@@ -98,5 +98,4 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
         textoContraseñaRepetida = new String(ventanaAMUsuario.passClaveRepetida.getPassword());
     }
-
 }
