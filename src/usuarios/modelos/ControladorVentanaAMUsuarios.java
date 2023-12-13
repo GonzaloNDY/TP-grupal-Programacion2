@@ -3,6 +3,7 @@ package usuarios.modelos;
 import interfaces.IControladorAMUsuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import usuarios.vistas.VentanaAMUsuario;
 import usuarios.vistas.VentanaUsuarios;
 
@@ -17,21 +18,20 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
     private VentanaAMUsuario ventanaAMUsuario;
     private VentanaUsuarios ventanaUsuarios;
 
-    public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaiz) {
+    public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaizU) {
         modoModificacion = false;
         this.ventanaAMUsuario = new VentanaAMUsuario(this);
-        ventanaUsuarios = ventanaRaiz;
+        ventanaUsuarios = ventanaRaizU;
     }
 
-    public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaiz, String correoUsuario) {
+    public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaizU, String correoUsuario) {
         modoModificacion = true;
         this.ventanaAMUsuario = new VentanaAMUsuario(this, correoUsuario);
-        ventanaUsuarios = ventanaRaiz;
+        ventanaUsuarios = ventanaRaizU;
     }
 
     @Override
     public void btnGuardarClic(ActionEvent evt) {
-        System.out.println("si se activa el boton guardar");
         GestorUsuarios gu = GestorUsuarios.instanciar();
         String perfilSeleccionadoString = (String) ventanaAMUsuario.comboBoxPerfil.getSelectedItem();
 
@@ -55,21 +55,21 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
         }
 
         String validacion = (gu.crearUsuario(textoCorreo, textoApellido, textoNombre, perfilSeleccionado, textoContraseña, textoContraseñaRepetida));
-        System.out.println(validacion);
-        System.out.println();
 
         if (validacion.equals("Usuario creado/modificado con éxito")) {
+            ventanaUsuarios.setEnabled(true);
             ventanaAMUsuario.resetearCamposRegistro();
             ventanaAMUsuario.dispose();
-            ventanaUsuarios.setVisible(true);
+        } else {
+            mostrarMensaje(validacion);
         }
 
     }
 
     @Override
     public void btnCancelarClic(ActionEvent evt) {
+        ventanaUsuarios.setEnabled(true);
         this.ventanaAMUsuario.dispose();
-        ventanaUsuarios.setVisible(true);
     }
 
     @Override
@@ -97,5 +97,10 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
     @Override
     public void passClaveRepetidaPresionarTecla(KeyEvent evt) {
         textoContraseñaRepetida = new String(ventanaAMUsuario.passClaveRepetida.getPassword());
+    }
+    
+    // Métodos auxiliares:
+    private void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "Mensaje del sistema:", JOptionPane.INFORMATION_MESSAGE);
     }
 }

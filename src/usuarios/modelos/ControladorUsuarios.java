@@ -31,7 +31,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
     // Métodos implementados:
     @Override
     public void btnNuevoClic(ActionEvent evt) {
-        ventanaUsuarios.setVisible(false);
+        ventanaUsuarios.setEnabled(false);
         IControladorAMUsuario ControladorAMUsuarios = new ControladorVentanaAMUsuarios(ventanaUsuarios);
     }
 
@@ -46,7 +46,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
         Usuario usuario = ventanaUsuarios.getModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
 
         IControladorAMUsuario ControladorAMUsuariosMod = new ControladorVentanaAMUsuarios(ventanaUsuarios, usuario.verCorreo());
-        ventanaUsuarios.setVisible(false);
+        ventanaUsuarios.setEnabled(false);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class ControladorUsuarios implements IControladorUsuarios {
 
     @Override
     public void btnVolverClic(ActionEvent evt) {
+        ventanaPrincipal.setEnabled(true);
         this.ventanaUsuarios.dispose();
-        ventanaPrincipal.setVisible(true);
     }
 
     @Override

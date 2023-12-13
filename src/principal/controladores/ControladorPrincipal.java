@@ -22,7 +22,7 @@ public class ControladorPrincipal implements IControladorPrincipal{
     @Override
     public void btnUsuariosClic(ActionEvent evt){
         IControladorUsuarios controladorUsuarios = new ControladorUsuarios(ventanaPrincipal);
-        ventanaPrincipal.setVisible(false);
+        ventanaPrincipal.setEnabled(false);
     }
 
     @Override
