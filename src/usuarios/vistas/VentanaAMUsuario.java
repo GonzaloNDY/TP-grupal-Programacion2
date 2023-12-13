@@ -284,35 +284,5 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-//    public void btnGuardarClic(ActionEvent evt) {
-//        System.out.println("si se activa el boton guardar");
-//        GestorUsuarios gu = GestorUsuarios.instanciar();
-//        String correo = this.txtCorreo.getText().trim();
-//        String apellido = this.txtApellido.getText().trim();
-//        String nombre = this.txtNombre.getText().trim();
-//        String clave = new String(this.passClave.getPassword());
-//        String claveRepetida = new String(this.passClaveRepetida.getPassword());
-//        String perfilSeleccionadoString = (String) comboBoxPerfil.getSelectedItem();
-//
-//        Perfil perfilSeleccionado = null;
-//
-//        for (Perfil perfil : Perfil.values()) {
-//            if (perfil.verPerfil().equals(perfilSeleccionadoString)) {
-//                perfilSeleccionado = perfil;
-//                break;
-//            }
-//        }
-//        System.out.println();
-//        String validacion = (gu.crearUsuario(correo, apellido, nombre, perfilSeleccionado, clave, claveRepetida));
-//        System.out.println(validacion);
-//        System.out.println();
-//        if (validacion.equals("Usuario creado/modificado con éxito")) {
-//            resetearCamposRegistro();
-//        }
-//        this.dispose();
-//    }
-//
-//    public void btnCancelarClic(ActionEvent evt) {
-//        this.dispose();
-//    }
+
 }

@@ -71,6 +71,13 @@ public class VentanaUsuarios extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuarios - Grupo 15  | Encargado");
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -207,6 +214,13 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
         controladorUsuarios.txtApellidoPresionarTecla(evt);
     }//GEN-LAST:event_txtApellidoKeyPressed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        System.out.println("Actualizo la tablaaa");
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
+        tablaUsuarios.setModel(mtu);
+    }//GEN-LAST:event_formWindowGainedFocus
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Borrar;

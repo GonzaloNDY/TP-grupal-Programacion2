@@ -39,7 +39,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
         Usuario usuario = ventanaUsuarios.obtenerModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
         
         IControladorAMUsuario ControladorAMUsuariosMod = new ControladorVentanaAMUsuarios(ventanaUsuarios, usuario.verCorreo());
-        ventanaUsuarios.setVisible(false);     
+        ventanaUsuarios.setVisible(false);   
 //        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(null,true);
 //        //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
 //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableStructureChanged();
@@ -49,8 +49,8 @@ public class ControladorUsuarios implements IControladorUsuarios {
 ////        ventanaUsuarios.getTablaUsuarios().getParent().repaint();
 //        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
         // Solucion temporal para actualizar la tabla:
-        this.ventanaUsuarios.dispose();
-        ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
+      //    this.ventanaUsuarios.dispose();
+     //  ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
 //        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
 
             // Solucion temporal para actualizar la tabla:
-            this.ventanaUsuarios.dispose();
+          //  this.ventanaUsuarios.dispose();
             ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
         }
     }

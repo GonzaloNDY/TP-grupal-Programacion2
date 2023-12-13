@@ -16,19 +16,19 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
     private String textoContraseñaRepetida = null;
     private boolean modoModificacion = false;
     private VentanaAMUsuario ventanaAMUsuario;
-    private VentanaUsuarios VentanaUsuarios;
+    private VentanaUsuarios ventanaUsuarios;
     //  IGestorUsuarios gu = GestorUsuarios.instanciar();
 
     public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaiz) {
         modoModificacion = false;
         this.ventanaAMUsuario = new VentanaAMUsuario(this);
-        VentanaUsuarios = ventanaRaiz;
+        ventanaUsuarios = ventanaRaiz;
     }
 
     public ControladorVentanaAMUsuarios(VentanaUsuarios ventanaRaiz, String correoUsuario) {
         modoModificacion = true;
         this.ventanaAMUsuario = new VentanaAMUsuario(this, correoUsuario);
-        VentanaUsuarios = ventanaRaiz;
+        ventanaUsuarios = ventanaRaiz;
     }
 
     @Override
@@ -64,7 +64,9 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
         if (validacion.equals("Usuario creado/modificado con éxito")) {
             ventanaAMUsuario.resetearCamposRegistro();
             ventanaAMUsuario.dispose();
-            VentanaUsuarios.setVisible(true);
+            ventanaUsuarios.setVisible(true);
+       //     ControladorUsuarios nuevoControlador = new ControladorUsuarios(VentanaUsuarios);
+         //   VentanaUsuarios.setVisible(true);
 
         }
 
@@ -73,7 +75,7 @@ public class ControladorVentanaAMUsuarios implements IControladorAMUsuario {
     @Override
     public void btnCancelarClic(ActionEvent evt) {
         this.ventanaAMUsuario.dispose();
-        VentanaUsuarios.setVisible(true);
+        ventanaUsuarios.setVisible(true);
     }
 
     @Override
