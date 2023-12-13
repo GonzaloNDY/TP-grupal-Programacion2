@@ -216,10 +216,11 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidoKeyPressed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        System.out.println("Actualizo la tablaaa");
-        IGestorUsuarios gu = GestorUsuarios.instanciar();
-        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
-        tablaUsuarios.setModel(mtu);
+        System.out.println("Actualizo la tabla");
+        controladorUsuarios.ventanaObtenerFoco(evt);
+//        IGestorUsuarios gu = GestorUsuarios.instanciar();
+//        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
+//        tablaUsuarios.setModel(mtu);
     }//GEN-LAST:event_formWindowGainedFocus
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -230,7 +231,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private javax.swing.JButton Volver;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
-    private javax.swing.JTable tablaUsuarios;
+    public javax.swing.JTable tablaUsuarios;
     private javax.swing.JTextField txtApellido;
     // End of variables declaration//GEN-END:variables
 

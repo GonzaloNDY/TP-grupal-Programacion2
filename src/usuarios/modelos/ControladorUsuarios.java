@@ -37,9 +37,9 @@ public class ControladorUsuarios implements IControladorUsuarios {
             return;
         }
         Usuario usuario = ventanaUsuarios.obtenerModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
-        
+
         IControladorAMUsuario ControladorAMUsuariosMod = new ControladorVentanaAMUsuarios(ventanaUsuarios, usuario.verCorreo());
-        ventanaUsuarios.setVisible(false);   
+        ventanaUsuarios.setVisible(false);
 //        VentanaAMUsuario ventanaAMUsuario = new VentanaAMUsuario(null,true);
 //        //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableDataChanged();
 //        ventanaUsuarios.obtenerModeloTablaUsuarios().fireTableStructureChanged();
@@ -49,8 +49,8 @@ public class ControladorUsuarios implements IControladorUsuarios {
 ////        ventanaUsuarios.getTablaUsuarios().getParent().repaint();
 //        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
         // Solucion temporal para actualizar la tabla:
-      //    this.ventanaUsuarios.dispose();
-     //  ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
+        //    this.ventanaUsuarios.dispose();
+        //  ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
     }
 
     @Override
@@ -63,12 +63,11 @@ public class ControladorUsuarios implements IControladorUsuarios {
         }
 
         int opcion = javax.swing.JOptionPane.showOptionDialog(null,
-                 
                 "¿Estás seguro de que quiere eliminar este usuario?", "Confirmar eliminación de usuario",
                 javax.swing.JOptionPane.YES_NO_OPTION,
                 javax.swing.JOptionPane.QUESTION_MESSAGE, null,
-                new Object[]{"Sí, eliminar", "No, cancelar"}
-        , "Sí, eliminar");
+                new Object[]{"Sí, eliminar", "No, cancelar"},
+                 "Sí, eliminar");
 
         if (opcion == javax.swing.JOptionPane.YES_OPTION) {
             Usuario usuario = ventanaUsuarios.obtenerModeloTablaUsuarios().obtenerUsuarioEnFila(filaSeleccionada);
@@ -82,7 +81,7 @@ public class ControladorUsuarios implements IControladorUsuarios {
 //        ventanaUsuarios.getTablaUsuarios().getParent().revalidate();
 
             // Solucion temporal para actualizar la tabla:
-          //  this.ventanaUsuarios.dispose();
+            //  this.ventanaUsuarios.dispose();
             ControladorUsuarios nuevoControlador = new ControladorUsuarios(ventanaPrincipal);
         }
     }
@@ -90,9 +89,12 @@ public class ControladorUsuarios implements IControladorUsuarios {
     @Override
     public void ventanaObtenerFoco(WindowEvent evt) {
         // No sé que hacer aqui
-        List<Usuario> listaUsuarios = gu.verUsuarios();
-        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(listaUsuarios);
-        ventanaUsuarios.getTablaUsuarios().setModel(mtu);
+//        List<Usuario> listaUsuarios = gu.verUsuarios();
+//        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(listaUsuarios);
+//        ventanaUsuarios.getTablaUsuarios().setModel(mtu);
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
+        ModeloTablaUsuarios mtu = new ModeloTablaUsuarios(gu.verUsuarios());
+        ventanaUsuarios.tablaUsuarios.setModel(mtu);
     }
 
     @Override
