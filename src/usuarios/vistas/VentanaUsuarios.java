@@ -1,7 +1,7 @@
 package usuarios.vistas;
 
 import interfaces.IGestorUsuarios;
-import java.awt.Dialog;
+import javax.swing.JTable;
 import usuarios.modelos.ControladorUsuarios;
 import usuarios.modelos.GestorUsuarios;
 import usuarios.modelos.ModeloTablaUsuarios;
@@ -59,7 +59,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
         Nuevo = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
@@ -72,9 +72,9 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Usuarios - Grupo 15  | Encargado");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyPressed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +161,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -204,9 +204,9 @@ public class VentanaUsuarios extends javax.swing.JDialog {
         controladorUsuarios.btnBuscarClic(evt);
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
+        controladorUsuarios.txtApellidoPresionarTecla(evt);
+    }//GEN-LAST:event_txtApellidoKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Borrar;
@@ -215,8 +215,24 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     private javax.swing.JButton Nuevo;
     private javax.swing.JButton Volver;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private java.awt.Label label1;
     private javax.swing.JTable tablaUsuarios;
+    private javax.swing.JTextField txtApellido;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getTablaUsuarios() {
+        return tablaUsuarios;
+    }
+    
+    public void setTablaUsuarios(JTable tabla){
+        tabla = tablaUsuarios;
+    }
+    
+    public ModeloTablaUsuarios obtenerModeloTablaUsuarios() {
+        return (ModeloTablaUsuarios) tablaUsuarios.getModel();
+    }
+    
+    public String obtenerApellido (){
+        return this.txtApellido.getText().trim();
+    }
 }

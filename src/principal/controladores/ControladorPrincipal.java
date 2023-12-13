@@ -1,21 +1,25 @@
 package principal.controladores;
 
+
 import interfaces.IControladorPrincipal;
 import interfaces.IControladorUsuarios;
+import interfaces.IGestorUsuarios;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import principal.vistas.VentanaPrincipal;
 import usuarios.modelos.ControladorUsuarios;
+import usuarios.modelos.GestorUsuarios;
+
 
 public class ControladorPrincipal implements IControladorPrincipal{
     private VentanaPrincipal ventanaPrincipal;
-
     public ControladorPrincipal() {
         this.ventanaPrincipal = new VentanaPrincipal();
         this.ventanaPrincipal.setControlador(this);
     }
 
     public static void main(String[] args) {
+        IGestorUsuarios gu = GestorUsuarios.instanciar();
         ControladorPrincipal controladorPrincipal = new ControladorPrincipal();
         controladorPrincipal.ventanaPrincipal.setTitle(TITULO + " - Grupo 15");
     }

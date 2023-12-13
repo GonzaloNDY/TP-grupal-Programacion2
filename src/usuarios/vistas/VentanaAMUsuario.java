@@ -13,7 +13,7 @@ import usuarios.modelos.Usuario;
 public class VentanaAMUsuario extends javax.swing.JDialog {
 
     private ControladorVentanaAMUsuarios controladorAMUsuario;
-    
+    private boolean modoModificacion = false;
     public void setControlador(ControladorVentanaAMUsuarios controlador) {
         this.controladorAMUsuario = controlador;
     }
@@ -29,6 +29,9 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         if (controladorAMUsuario != null) {
             this.setControlador(controladorAMUsuario);
         }
+        modoModificacion = false;
+        setLocationRelativeTo(null);
+        setVisible(true); // Hace visible la ventana
     }
 
     // Constructor para casos de modificación (requiere correo de usuario)
@@ -44,6 +47,9 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
         if (controladorAMUsuario != null) {
             this.setControlador(controladorAMUsuario);
         }
+        modoModificacion = true;
+        setLocationRelativeTo(null);
+        setVisible(true); // Hace visible la ventana
 
     }
 
@@ -232,7 +238,7 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
+
         controladorAMUsuario.btnGuardarClic(evt);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -241,23 +247,23 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
-       controladorAMUsuario.txtCorreoPresionarTecla(evt);
+        controladorAMUsuario.txtCorreoPresionarTecla(evt);
     }//GEN-LAST:event_txtCorreoKeyReleased
 
     private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
-         controladorAMUsuario.txtApellidoPresionarTecla(evt);
+        controladorAMUsuario.txtApellidoPresionarTecla(evt);
     }//GEN-LAST:event_txtApellidoKeyReleased
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-         controladorAMUsuario.txtNombrePresionarTecla(evt);
+        controladorAMUsuario.txtNombrePresionarTecla(evt);
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void passClaveKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveKeyReleased
-      controladorAMUsuario.passClavePresionarTecla(evt);
+        controladorAMUsuario.passClavePresionarTecla(evt);
     }//GEN-LAST:event_passClaveKeyReleased
 
     private void passClaveRepetidaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passClaveRepetidaKeyReleased
-      controladorAMUsuario.passClaveRepetidaPresionarTecla(evt);
+        controladorAMUsuario.passClaveRepetidaPresionarTecla(evt);
     }//GEN-LAST:event_passClaveRepetidaKeyReleased
 
 
@@ -309,5 +315,4 @@ public class VentanaAMUsuario extends javax.swing.JDialog {
 //    public void btnCancelarClic(ActionEvent evt) {
 //        this.dispose();
 //    }
-
 }
