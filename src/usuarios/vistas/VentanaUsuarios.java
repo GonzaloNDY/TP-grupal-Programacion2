@@ -237,7 +237,7 @@ public class VentanaUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_txtApellidoKeyPressed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        System.out.println("Actualizo la tabla");
+       
         controladorUsuarios.ventanaObtenerFoco(evt);
     }//GEN-LAST:event_formWindowGainedFocus
 
